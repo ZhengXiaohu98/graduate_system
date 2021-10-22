@@ -1,0 +1,83 @@
+{% extends 'myadmin/base.html' %}
+{% load static %}
+
+{% block style_sheet %}
+    <link rel="stylesheet" type="text/css" href="{% static 'base.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'viewinstructor.css' %}"/>
+{% endblock %}
+
+{% block main_body %}
+    <h1 style="font-size: 20; color:aqua; font-weight:bold;">Instructor Management</h1>
+    <hr>
+    <table border = "1px" style="border-collapse: collapse;">
+        <thead>
+        <tr style="height: 50px; font: size 30px;">
+            <th class = "viewtable_id">ID</th>
+            <th class = "viewtable_name">Name</th>
+            <th class = "viewtable_username">username</th>
+            <th class = "viewtable_password">password</th>
+            <th class = "viewtable_gender">gender</th>
+            <th class = "viewtable_email">email</th>
+            <th class = "viewtable_cp">complain received</th>
+            <th class = "viewtable_classteaching">Classes teaching</th>
+            <th class = "viewtable_status">status</th>
+            <th class = "viewtable_action">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for i in inslist %}
+        <tr>
+            <td>{{i.iid}}</td>
+            <td>{{i.insName}}</td>
+            <td>{{i.username}}</td>
+            <td>{{i.pw}}</td>
+            <td>{{i.gender}}</td>
+            <td>{{i.email}}</td>
+            <td>{{i.cp_num}}</td>
+            <td>{{i.class_teaching}}</td>
+            <td>
+                {% if i.curStatus == 0 %}
+                    <span style="color:crimson">Suspended</span>
+                {% else %}
+                    <span style="color:greenyellow">Normal</span>
+                {% endif %}
+            </td>
+            <td style="text-align: center;">
+                <a href="{% url 'instructor_edit' i.iid %}" id = "action" style="display: block;
+                height:18px; 
+                width:60px; 
+                background-color:#40a0fa; 
+                font-weight: bold;
+                border-radius: 10px;
+                text-align:center;">Edit</a>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div class = "paginator">
+        <ul>
+            <li>
+                <a href="{% url 'instructor_view' pIndex|add:-1 %}?{{myKey|join:'&'}}">prev</a>
+            </li>
+            {% for i in pRange %}
+                <li>
+                    <a href="{% url 'instructor_view' i %}?{{myKey|join:'&'}}" {% if i == pIndex %} style="color: red;" {% endif %}>{{i}}</a>
+                </li>
+            {% endfor %}
+            <li>
+                <a href="{% url 'instructor_view' pIndex|add:1 %}?{{myKey|join:'&'}}">next</a>
+            </li>
+        </ul>
+    </div>
+    <div class="search_form">
+        <form action="{% url 'instructor_view' 1 %}" method="get">
+            <input type="text" name="keyword">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+    <br><br><br>
+    <div>
+        <a href="{% url 'instructor_add' %}" id = "add_ins">Add a instructor</a>
+    </div>
+{% endblock %}

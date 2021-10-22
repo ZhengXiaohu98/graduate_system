@@ -1,0 +1,12 @@
+{% extends 'login_base.html' %}
+
+{% block main_content %}
+<h2>Instructor application Check</h2>
+<form action="{% url 'instructor_application_docheck'  %}" method = "post">
+    {% csrf_token %}
+    <label for="sid">Please enter your state id:</label>
+    <input type="text" name="id" id="sid"><br><br>
+    <input type="submit" value="Check"><br><br>
+    <span style="color:red;">{{info}}</span>
+</form>
+{% endblock %}

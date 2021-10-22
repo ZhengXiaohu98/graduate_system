@@ -1,0 +1,50 @@
+{% load static %}
+
+<!-- load all the required stylesheet-->
+{% block style_sheet %}
+    <link rel="stylesheet" type="text/css" href="{% static 'base.css' %}"/>
+{% endblock %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Management</title>
+</head>
+<body>
+    <div>
+        <table>
+            <tr>
+                <td colspan="3" style="text-align: center; font-weight: bold; font-size: 30;">Admin Management<br/></td>
+            </tr>
+            <tr>
+                <td width="300px" id = "menu" style="text-align: center;">
+                    <ul class="nav">
+                        <li><a href="{% url 'student_view' 1 %}">Student Management</a></li>
+                        <li><a href="{% url 'instructor_view' 1 %}">Instructor Management</a></li>
+                        <li><a href="">Manage period</a></li>
+                        <li><a href="{% url 'course_view' 1 %}">Class Management</a></li>
+                        <li><a href="#">Complain Received</a></li>
+                        <li><a href="{% url 'stuapp_view' 1 %}">Student Application</a></li>
+                        <li><a href="{% url 'insapp_view' 1 %}">Instructor Application</a></li>
+                        <li><a href="#">Graduation Application</a></li>
+                    </ul>
+                </td>
+                <td class="main_content">
+                    <div>
+                        {% block main_body %}
+                        {% endblock %}
+                    </div>
+                </td>
+                <td style="text-align: center;">
+                    <div id = "logout_area">
+                        <a href="{% url 'myadmin_logout' %}" id = 'logout'>Logout</a>
+                    </div>    
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

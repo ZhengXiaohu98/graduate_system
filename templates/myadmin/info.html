@@ -1,0 +1,16 @@
+{% extends 'myadmin/base.html' %}
+{% load static %}
+
+<!-- load all the required stylesheet-->
+{% block style_sheet %}
+    <link rel="stylesheet" type="text/css" href="{% static 'base.css' %}"/>
+{% endblock %}
+
+{% block main_body %}
+    <center>
+        <h1>System Notification</h1>
+        <hr/>
+        <h2>Action message</h2>
+        <h3>{{ info }}</h3>    
+    </center>
+{% endblock %}

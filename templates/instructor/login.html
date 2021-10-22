@@ -1,0 +1,11 @@
+{% extends 'login_base.html'%}
+{% block main_content %}
+<form action="{% url 'instructor_dologin' %}" method="POST">
+    {% csrf_token %}
+    <h2>Instructor Login</h2><br>
+    username:  <input type="text" name = 'username'><br/><br/>
+    password:  <input type="password" name = 'password'><br/><br/>
+    <button type="submit">Login</button><br/><br/>
+    <span style="color: red">{{ msg }}</span> 
+</form>    
+{% endblock %}

@@ -1,0 +1,47 @@
+tr td{
+    text-align: center;
+    height: 30px;
+}
+
+.viewtable_id{width: 60px;}
+.viewtable_name{width: 200px;}
+.viewtable_username{width: 160px;}
+.viewtable_password{width: 130px;}
+.viewtable_gender{width: 90px;;}
+.viewtable_email{width: 250px;}
+.viewtable_cp{width: 150px;}
+.viewtable_classteaching{width: 150px;}
+.viewtable_status{width: 140px;}
+.viewtable_action{width: 60px;}
+
+.paginator ul li{
+    list-style-type: none; 
+    float: left;
+    display: block;
+    height: 30px;
+    width: 50px;
+    margin-top: 20px;
+}
+
+.search_form{
+    float: right;
+    height: 30px;
+    margin-top: 20px;
+}
+
+#add_ins{
+    float: left;
+    display: block;
+    height: 40px;
+    width: 125px;
+    background-color: palegreen;
+    line-height: 35px;
+    color: red;
+    border-radius: 10px;
+    text-align: center;
+}
+
+#add_ins:hover{
+    background-color: rgb(236, 115, 210);
+    color: rgb(96, 56, 241);
+}

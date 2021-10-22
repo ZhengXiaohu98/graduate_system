@@ -1,0 +1,22 @@
+{% extends 'login_base.html' %}
+
+{% block main_content %}
+<h2>Instructor application Status</h2>
+<br><br><br>
+{% if insApp.curStatus == 0 %}
+    <span style="color:rgb(50, 122, 255)">Pending</span>
+{% elif insApp.curStatus == 1 %}
+    <span style="color:rgb(38, 253, 56)">Accepted</span>
+{% else %}
+    <span style="color:rgb(255, 20, 20)">Rejected</span>
+{% endif %}
+<br>
+{{insApp.stateid}}<br>
+{{insApp.insName}}<br>
+{{insApp.gender}}<br>
+{{insApp.email}}<br>
+Feedback<br>
+<textarea rows="4" cols="50" readonly>
+    {{insApp.feedback}}
+</textarea>
+{% endblock %}

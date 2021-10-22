@@ -1,0 +1,58 @@
+{% extends 'myadmin/base.html' %}
+{% load static %}
+
+{% block style_sheet %}
+    <link rel="stylesheet" type="text/css" href="{% static 'base.css' %}"/>
+{% endblock %}
+
+{% block main_body %}
+<center>
+    <h1>Manage Instructor</h1>
+    <hr/>
+    <h2>Edit Student</h2>
+    <form action="{% url 'instructor_update'  %}" method = "post">
+        {% csrf_token %}
+        <input type="hidden" name = "iid" value="{{ins.iid}}" />
+        <table width="280" border="0">
+            <tr>
+                <td>Username:</td>
+                <td><input type = "text" name = "username" value = "{{ins.username}}"/></td>
+            </tr>
+            <tr>
+                <td>Password:</td>
+                <td><input type = "text" name = "password" value = "{{ins.pw}}"/></td>
+            </tr>
+            <tr>
+                <td>Name:</td>
+                <td><input type = "text" name = "name" value = "{{ins.insName}}"/></td>
+            </tr>
+            <tr>
+                <td>Gender:</td>
+                <td>
+                    M:<input type = "radio" name = "gender" value = "M" {% if ins.gender == 'M' %} checked {% endif %}/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    F:<input type = "radio" name = "gender" value = "F" {% if ins.gender == 'F' %} checked {% endif %}/>
+                </td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td><input type = "text" name = "email" value = "{{ins.email}}"/></td>
+            </tr>
+            <tr>
+                <td><label for="stat">Current status:</label></td>
+                <td>
+                    <select name = "status" id = "stat">
+                        <option value = 'S' {% if ins.curStatus == 0 %} selected {% endif %}>Suspended</option>
+                        <option value = 'N' {% if ins.curStatus == 1 %} selected {% endif %}>Normal</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <input type = "submit" value = "Submit"/>
+                </td>
+            </tr>
+        </table>
+    </form>
+</center>
+{% endblock %}
