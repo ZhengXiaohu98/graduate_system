@@ -1,0 +1,26 @@
+{% extends 'instructor/base.html' %}
+
+{% block title %}
+<title>Complain</title>
+{% endblock %}
+
+{% block name %}
+{{name}}
+{% endblock %}
+
+{% block main_body %}
+<center>
+    <h1>Complain</h1>
+    <form action="{% url 'update_complain' %}" method = "post">
+        {% csrf_token %}
+        <table width="800">
+            
+            <tr>
+                <td>Who do you want to complain?</td>
+                <td><input type="text" name = "complainName"></td>
+            </tr>
+        </table>
+        <input type="submit" value="Complain">
+    </form>
+</center>
+{% endblock %}

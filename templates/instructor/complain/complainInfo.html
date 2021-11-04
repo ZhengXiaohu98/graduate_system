@@ -1,0 +1,17 @@
+{% extends 'instructor/base.html' %}
+
+{% block title %}
+<title>Complain Info</title>
+{% endblock %}
+
+{% block name %}
+{{name}}
+{% endblock %}
+
+{% block main_body %}
+<h1>Complain Information message</h1>
+
+<span>{{info}}</span>
+</br>
+<a href="{% url 'complain' %}">Try Again</a>
+{% endblock %}

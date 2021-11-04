@@ -46,7 +46,7 @@ a:active{text-decoration: none;color:black}
     display: block;  
 }
 
-.on a{ background: url(png/smallarrow.png) right center no-repeat; color:rgb(57, 124, 167)}
+.on a{ background: url(img/smallarrow.png) right center no-repeat; color:rgb(57, 124, 167)}
 .rightbody{
     background-color: white;
     margin:3px;
