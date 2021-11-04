@@ -1,0 +1,72 @@
+body{ background-color: #f5f5f5;}
+
+a:link{text-decoration: none; color: black;}
+a:visited{text-decoration: none; color: black;}
+a:hover {text-decoration: underline; color:black}
+a:active{text-decoration: none;color:black}
+
+.container{ 
+    position: relative;
+    padding-right: 0px;
+    padding-left: 5%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+#userlogout{
+    position: absolute;
+    right: 50px;
+    color: black;
+    top:50%;
+}
+
+
+
+#logout:hover{ color:rgb(243, 45, 111) }
+
+.contents-list{
+    padding-left: 0px;
+    float:left;
+    margin-top:20px;
+}
+
+.contents-list li{
+    display: block;
+    position: relative;
+    padding: 25px;
+    line-height:40px;
+    margin:3px;
+    background-color: white;
+    
+}
+
+.contents-list li a{
+    display: block;  
+}
+
+.on a{ background: url(png/smallarrow.png) right center no-repeat; color:rgb(57, 124, 167)}
+.rightbody{
+    background-color: white;
+    margin:3px;
+    margin-top:23px;
+    float:left; 
+}
+
+
+
+@media all and (min-width:1661px) {
+    .container{width:1600px;}
+    .rightbody{width:75%; padding:50px;}
+}
+
+@media all and (min-width:1001px) and (max-width:1660px){
+    .container{width:1500px;}
+    .rightbody{width:80%; padding:20px;}
+}
+
+@media all and (min-width:500px) and (max-width:1000px){
+    .container{width:950px;}
+    .rightbody{width:75%; padding:5px;}
+}

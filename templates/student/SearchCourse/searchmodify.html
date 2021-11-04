@@ -1,0 +1,93 @@
+{% extends 'student/base.html' %}
+
+{% block title1 %}Search Course{% endblock %}
+
+{% block style%}
+    <style>
+        td {padding:20px}
+    </style>
+{% endblock %}
+
+{% block name%}{{userinfo.stuName}}{% endblock %}
+
+{% block username%}{{userinfo.username}}{% endblock %}
+
+{% block url%}
+        <ul class = "contents-list">
+            <li><a href="{% url 'student_index' %}">Current Information</a></li>
+            <li><a href="{% url 'student_CourseManage' %}">Course Management</a></li>
+            <li class = "on"><a href="{% url 'student_SearchCourse' 0 %}">Search Course</a></li>
+            <li><a href="{% url 'student_AcademicRecord' %}">Academic Record</a></li>
+            <li><a href="{% url 'student_complain' %}">Complain</a></li>
+            <li><a href="{% url 'student_setting' %}">Setting</a></li>
+        </ul>
+{% endblock %}
+
+{% block Body %} 
+    <div class ="Search">
+        <h1>Search Courses</h1>
+        <form action = "{% url 'SearchCourse_courses' %}" method = "post">
+            {% csrf_token %}
+            <table width= 20%>
+                <tr>
+                    <td>Term:</td>
+                    <td>
+                        <select  name = "term" >
+                            <option>Choose Term</option>
+                            {% for i in term %}
+                            <option {% if mterm == i %} selected {% endif %}>{{i}}</option>
+                            {% endfor %}
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Course:</td>
+                    <td>
+                        <select  name = "course" >
+                            <option>Choose Course</option>
+                            {% for i in course%}
+                            <option {% if mcourse == i.className %} selected {% endif %}>{{i.className}}</option>
+                            {% endfor %}
+                    </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Day:</td>
+                    <td>
+                        <select  name = "day" >
+                            <option>Choose Day</option>
+                            {% for i in day%}
+                            <option {% if mday == i.days %} selected {% endif %}>{{i.days}}</option>
+                            {% endfor %}
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Time:</td>
+                    <td>
+                        <select  name = "time" >
+                            <option>Choose Time</option>
+                            {% for i in time%}
+                            <option  {% if mtime == i.start_time %} selected {% endif %} >{{i.start_time}}</option>
+                            {% endfor %}
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Status:</td>
+                    <td>
+                        <select  name = "status" >
+                            <option>Choose Status</option>
+                            <option {% if mstatus == "Open" %} selected {% endif %}>Open</option>
+                            <option {% if mstatus == "Close" %} selected {% endif %}>Close</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+            <input type="submit" value = "Search"/>
+        </form>
+    </div>
+
+
+{% endblock %}
+

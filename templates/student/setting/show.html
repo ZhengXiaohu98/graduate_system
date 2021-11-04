@@ -1,0 +1,37 @@
+{% extends 'student/base.html' %}
+
+{% block title1 %}Setting{% endblock %}
+
+{% block style%}
+    <style>
+        #settinglist li{display: block; padding: 20px;line-height: 40px; font-size: 20px; border-bottom: 2px solid #f5f5f5;}
+    </style>
+{% endblock %}
+
+{% block name%}{{userinfo.stuName}}{% endblock %}
+
+{% block username%}{{userinfo.username}}{% endblock %}
+
+{% block url%}
+        <ul class = "contents-list">
+            <li><a href="{% url 'student_index' %}">Current Information</a></li>
+            <li><a href="{% url 'student_CourseManage' %}">Course Management</a></li>
+            <li><a href="{% url 'student_SearchCourse' 0 %}">Search Course</a></li>
+            <li><a href="{% url 'student_AcademicRecord' %}">Academic Record</a></li>
+            <li><a href="{% url 'student_complain' %}">Complain</a></li>
+            <li class = "on"><a href="{% url 'student_setting' %}">Setting</a></li>
+        </ul>
+{% endblock %}
+
+{% block Body %} 
+    <div class ="setting">
+        <h1>Setting</h1>
+        <ul id = "settinglist">
+            <li><a href ="{% url 'student_setting_information' %}" >Personal Information</a></li>
+            <li><a href ="{% url 'student_setting_password' %}" >Change Password</a></li>
+            <li><a href ="{% url 'student_logout' %}" id = logout >Logout</a></li>
+        </ul>
+    </div>
+
+
+{% endblock %}

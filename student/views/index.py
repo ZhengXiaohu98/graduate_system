@@ -1,10 +1,42 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
-from myadmin.models import student, stuApplication
+from myadmin.models import student, stuApplication, stuCourse, schedules, instructor
+import pickle
 
 #admin index page
 def index(request):
-    return render(request, 'student/index.html')
+    id = request.session['studentuser']['sid']
+    uinfo = student.objects.get(sid = id)
+    if uinfo.curStatus == 0:
+        info = "! ! Your current status is suspended ! !"
+        context = {"userinfo":uinfo, "info":info , "taking":0}
+        return render(request, 'student/index.html',context)
+
+    try:
+        # get the current taking courses
+        courseObj = stuCourse.objects.filter(sid = id ,curStatus = 2)
+        # get current term
+        terms = courseObj.values_list('year', 'semester').distinct()
+        terms.query = pickle.loads(pickle.dumps(terms.query))
+
+        for i in terms:
+            term= str(i["year"]) + " " + i["semester"]
+
+        # get the course inforation from schedule table
+        data=[]
+        for i in courseObj:
+            schedulesObj = schedules.objects.get(sectionNum = i.sectionNum)
+            ins = instructor.objects.get(iid = schedulesObj.iid)
+            rlist ={"year":i.year, "semester":i.semester, "cid":i.cid ,"className":schedulesObj.className, "section":i.sectionNum, 
+                    "insName":ins.insName, "day":schedulesObj.days, "time":schedulesObj.start_time}
+            data.append(rlist)
+
+        context = {"userinfo":uinfo, "term": term, "course":data, "taking":1}
+        return render(request, 'student/index.html',context)
+    except Exception as err:
+        info = "! ! There is no current taking courses ! !"
+        context = {"userinfo":uinfo, "info":info , "taking":0}
+        return render(request, 'student/index.html',context)
 
 #admin login form
 def login(request):
@@ -24,6 +56,7 @@ def dologin(request):
     except Exception as err:
         context = {"msg" : "Student Not Found!"}
     return render(request, 'student/login.html', context)
+    
 
 def logout(request):
     del request.session['studentuser']

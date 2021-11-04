@@ -18,5 +18,7 @@ class StudentMiddleware:
             if 'studentuser' not in request.session:
                 return redirect(reverse('student_login'))
 
+
+
         response = self.get_response(request)
         return response

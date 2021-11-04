@@ -1,0 +1,42 @@
+{% load static %}
+
+<link rel="stylesheet"  href="{% static 'studentbase.css' %}"/>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title1 %} Main Page {% endblock %}</title>
+    {% block style %}
+    {% endblock %}
+    
+</head>
+
+<body >
+    <div id = "header">
+        <div class = "container">
+            Header还没加内容
+            <div id = "userlogout">
+                {% block name%} Name {% endblock %} |
+                {% block username%} 123567 {% endblock %} |
+                <a href = "{% url 'student_logout' %}" id = logout>Log out</a> 
+            </div>
+        </div>
+     </div>
+
+    <div class = "container">
+        {% block url%} 
+            url
+        {% endblock %}
+                
+        <div class ="rightbody">
+            {% block Body %} Main body {% endblock %}
+        </div>
+        
+    </div>
+    
+</body>
+</html>

@@ -1,0 +1,73 @@
+{% extends 'student/base.html' %}
+
+{% block title1 %}Search Course{% endblock %}
+
+{% block style%}
+    <style>
+        th {background-color:rgb(184, 228, 252)}
+        #result a {color:steelblue;}
+    </style>
+{% endblock %}
+
+{% block name%}{{userinfo.stuName}}{% endblock %}
+
+{% block username%}{{userinfo.username}}{% endblock %}
+
+{% block url%}
+        <ul class = "contents-list">
+            <li><a href="{% url 'student_index' %}">Current Information</a></li>
+            <li><a href="{% url 'student_CourseManage' %}">Course Management</a></li>
+            <li class = "on"><a href="{% url 'student_SearchCourse' 0 %}">Search Course</a></li>
+            <li><a href="{% url 'student_AcademicRecord' %}">Academic Record</a></li>
+            <li><a href="{% url 'student_complain' %}">Complain</a></li>
+            <li><a href="{% url 'student_setting' %}">Setting</a></li>
+        </ul>
+{% endblock %}
+
+{% block Body %} 
+    <div class ="Search">
+        <h1>Search Courses</h1>
+        <div id = "result">
+            <center>
+                <h2>Search Result</h2>
+                <a href="{% url 'student_SearchCourse' 0  %}">New Search</a> | <a href="{% url 'SearchCourse_modify' search %}"> Modify Search</a>
+                <br/>
+                <br/>
+                <table width= 90% border = '1'>
+                    <tr>
+                        <th>Term</th>
+                        <th>Course ID</th>
+                        <th>Class Name</th>
+                        <th>Section#</th>
+                        <th>Instructor</th>
+                        <th>Days</th>
+                        <th>Time</th>
+                        <th>Status</th>
+                        <th>Operation</th>
+                    </tr>
+
+                    {% for r in course %}
+                    <tr>
+                        <td>{{r.year}} {{r.semester}}</td>
+                        <td>{{r.cid}}</td>
+                        <td>{{r.className}}</td>
+                        <td>{{r.section}}</td>
+                        <td>{{r.insName}}</td>
+                        <td>{{r.day}}</td>
+                        <td>{{r.time}}</td>
+                        <td>{{r.status}}</td>
+                        {% if r.status == 'Open' %}
+                        <td><a href = "">Add</a></td>
+                        {% else %}
+                        <td></td>
+                        {% endif %}
+                    </tr>
+                    {% endfor %}
+                </table>
+                未完成：add操作需要判断 1. 已经添加的课程是否达到上限（4节）2. 课程是否人满，满人进waitlist
+                <br/>
+                <a href="{% url 'student_SearchCourse' 0  %}">New Search</a> | <a href="{% url 'SearchCourse_modify' search %}"> Modify Search</a>
+            </center>
+        </div>    
+    </div>
+{% endblock %} 

@@ -1,0 +1,32 @@
+{% extends 'student/base.html' %}
+
+{% block title1 %}AcademicRecord{% endblock %}
+
+{% block name%}{{userinfo.stuName}}{% endblock %}
+
+{% block username%}{{userinfo.username}}{% endblock %}
+
+{% block url%}
+        <ul class = "contents-list">
+            <li><a href="{% url 'student_index' %}">Current Information</a></li>
+            <li><a href="{% url 'student_CourseManage' %}">Course Management</a></li>
+            <li><a href="{% url 'student_SearchCourse' 0 %}">Search Course</a></li>
+            <li class = "on"><a href="{% url 'student_AcademicRecord' %}">Academic Record</a></li>
+            <li><a href="{% url 'student_complain' %}">Complain</a></li>
+            <li><a href="{% url 'student_setting' %}">Setting</a></li>
+        </ul>
+{% endblock %}
+
+{% block Body %} 
+    <div class ="AcademicRecord">
+        <h1> My Academic</h1>
+        <center>
+            <h2> Apply Graduate</h2>
+            <br/>
+            <h3 >{{info}}</h3>
+
+        </center>
+    </div>
+
+
+{% endblock %}
