@@ -14,15 +14,7 @@
         <tr style="height: 50px; font: size 30px;">
             <th class = "viewtable_id">Course ID</th>
             <th class = "viewtable_name">Class Name</th>
-            <th class = "viewtable_insName">Instructor Name</th>
-            <th class = "viewtable_days">Days</th>
-            <th class = "viewtable_start_time">Times</th>
-            <th class = "viewtable_duration">Class Duration</th>
-            <th class = "viewtable_max_limit">Class Limit</th>
-            <th class = "viewtable_current_enroll">Current Enroll</th>
-            <th class = "viewtable_wait_list">Waiting List</th>
-            <th class = "viewtable_rating">Rating</th>
-            <th class = "viewtable_action">Action</th>
+            <th class = "viewtable_department">Department</th>
         </tr>
         </thead>
         <tbody>
@@ -30,42 +22,7 @@
         <tr>
             <td>{{c.cid}}</td>
             <td>{{c.className}}</td>
-            <td>
-                {% for ins in insList %}
-                    {% if ins.iid == c.iid %}
-                        {{ ins.insName }}
-                    {% endif %}
-                {% endfor %}
-            </td>
-            <td>{{c.days}}</td>
-            <td>
-                {% if c.start_time == 0 %}
-                    8:15
-                {% elif c.start_time == 1 %}
-                    9:00
-                {% elif c.start_time == 2 %}
-                    10:00
-                {% elif c.start_time == 3 %}
-                    11:00
-                {% elif c.start_time == 4 %}
-                    12:30
-                {% elif c.start_time == 5 %}
-                    14:00
-                {% elif c.start_time == 6 %}
-                    15:30
-                {% elif c.start_time == 7 %}
-                    18:00
-                {% elif c.start_time == 8 %}
-                    19:00
-                {% elif c.start_time == 9 %}
-                    20:00
-                {% endif %}
-            </td>
-            <td>{{c.duration}}</td>
-            <td>{{c.max_limit}}</td>
-            <td>{{c.current_enroll}}</td>
-            <td>{{c.wait_list}}</td>
-            <td>{{c.rating}}</td>
+            <td>{{c.department}}</td>
             <td style="text-align: center;">
                 <a href="{% url 'course_edit' c.cid %}" id = "action" style="display: block;
                 height:18px; 

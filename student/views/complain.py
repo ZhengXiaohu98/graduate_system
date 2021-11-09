@@ -179,6 +179,3 @@ def formSubmitIns(request):
         return render(request, 'student/complain/info.html',context)
 
     return redirect(reverse('complain_instructor', args = (info, ins, description, 1, )))
-
-
-

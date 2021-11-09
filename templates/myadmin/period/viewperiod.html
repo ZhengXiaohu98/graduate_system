@@ -1,0 +1,54 @@
+{% extends 'myadmin/base.html' %}
+{% load static %}
+
+{% block style_sheet %}
+    <link rel="stylesheet" type="text/css" href="{% static 'base.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'periodManagement.css' %}"/>
+{% endblock %}
+
+{% block main_body %}
+    <h1 style="font-size: 20; color:aqua; font-weight:bold;">Period Management</h1>
+    <hr>
+    <table>
+        <tr>
+            <td>Current Semester:</td>
+            <td width = "250"><span>{{ cur.term }}</span></td>
+            <td>
+                {% if cur.curPeriod == 0 %}
+                    <span style="color:rgb(91, 243, 243)">Waiting Period</span>
+                {% elif cur.curPeriod == 1 %}
+                    <span style="color:rgb(230, 107, 26)">Class Set-up Period</span>
+                {% elif cur.curPeriod == 2 %}
+                    <span style="color:rgb(255, 47, 203)">Course Registration Period</span>
+                {% elif cur.curPeriod == 3 %}
+                    <span style="color:rgb(31, 99, 226)">Special Registration Period</span>
+                {% elif cur.curPeriod == 4 %}
+                    <span style="color:rgb(52, 233, 67)">Class Running Period</span>
+                {% else %}
+                    <span style="color:rgb(207, 6, 6)">Grading Period</span>
+                {% endif %}
+            </td>
+        </tr>
+        <tr>
+            <td>Upcoming Semester:</td>
+            <td><span>{{ uc.term }}</span></td>
+            <td>
+                {% if uc.curPeriod == 0 %}
+                    <span style="color:rgb(30, 190, 190)">Waiting Period</span>
+                {% elif uc.curPeriod == 1 %}
+                    <span style="color:rgb(230, 107, 26)">Class Set-up Period</span>
+                {% elif uc.curPeriod == 2 %}
+                    <span style="color:rgb(255, 47, 203)">Course Registration Period</span>
+                {% elif uc.curPeriod == 3 %}
+                    <span style="color:rgb(31, 99, 226)">Special Registration Period</span>
+                {% elif uc.curPeriod == 4 %}
+                    <span style="color:rgb(52, 233, 67)">Class Running Period</span>
+                {% else %}
+                    <span style="color:rgb(207, 6, 6)">Grading Period</span>
+                {% endif %}
+            </td>
+        </tr>
+    </table>
+        <a href="{% url 'period_next' %}" class = "action">Next Period</a>
+        <a href="{% url 'period_end' %}" class = "action">End Current Term</a>
+{% endblock %}

@@ -1,0 +1,16 @@
+.action{
+    float: left;
+    display: block;
+    height: 40px;
+    width: 125px;
+    background-color: palegreen;
+    line-height: 35px;
+    color: rgb(17, 0, 255);
+    border-radius: 10px;
+    text-align: center;
+}
+
+.action:hover{
+    background-color: rgb(115, 222, 236);
+    color: rgb(250, 106, 10);
+}
