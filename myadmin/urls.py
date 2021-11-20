@@ -1,9 +1,11 @@
 from django.urls import path
-from myadmin.views import index, student, instructor, application, course
+from myadmin.models import period
+from myadmin.views import index, student, instructor, application, course, period, complain
 
 urlpatterns = [
     #myadmin index page
     path('', index.index, name = 'myadmin_index'),
+    path('notifications', index.sendNotifications, name='notification_send'),
 
     #login pages url
     path('login', index.login, name = 'myadmin_login'),
@@ -39,5 +41,15 @@ urlpatterns = [
     path('course/courseadd', course.addCourse, name = 'course_add'),
     path('course/courseinsert', course.insertCourse, name = 'course_insert'),
     path('course/courseedit/<int:cid>', course.editCourse, name = 'course_edit'),
-    path('course/courseupdate', course.updateCourse, name='course_update')
+    path('course/courseupdate', course.updateCourse, name='course_update'),
+    
+    #period url page
+    path('period/periodview', period.viewPeriod, name = 'period_view'),
+    path('period/periodnext', period.nextPeriod, name = 'period_next'),
+    path('period/periodend', period.endPeriod, name = 'period_end'),
+    
+    #complain url page
+    path('complain/complainview/<int:pIndex>', complain.viewComplain, name = 'complain_view'),
+    path('student/complaindeal/<int:cpid>', complain.dealComplain, name = 'complain_deal'),
+    path('student/complainupdate', complain.updateComplain, name = 'complain_update')
 ]

@@ -6,13 +6,12 @@ from myadmin.models import course, instructor
 
 def viewCourse(request, pIndex=1):
     courseList = course.objects.all()
-    insList = instructor.objects.all()
     #keep the serach keyword
     myKey = []
     #get the serach keyword
     kw = request.GET.get('keyword', None)
     if kw is not None:
-        courseList = courseList.filter(Q(cid__contains=kw) | Q(className__contains=kw) | Q(days__contains=kw))
+        courseList = courseList.filter(Q(cid__contains=kw) | Q(className__contains=kw) | Q(department__contains=kw))
         myKey.append('keyword='+kw)
     #divide pages
     pIndex = int(pIndex)
@@ -28,7 +27,7 @@ def viewCourse(request, pIndex=1):
     #get the page range
     pRange = p.page_range
 
-    context = {"courselist":retList, "pRange":pRange, "maxPages":maxPages, "pIndex":pIndex, "myKey":myKey, "insList":insList}
+    context = {"courselist":retList, "pRange":pRange, "maxPages":maxPages, "pIndex":pIndex, "myKey":myKey}
     return render(request, "myadmin/course/view_course.html", context)
 
 def addCourse(request):

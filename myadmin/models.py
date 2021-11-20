@@ -119,7 +119,7 @@ class stuCourse(models.Model):
 
     class Meta:
         db_table = "stucourse"
-
+#complain table model
 class complainmsg(models.Model):
     sendType = models.CharField(max_length = 36)
     fromId = models.IntegerField(default = 0)
@@ -133,3 +133,36 @@ class complainmsg(models.Model):
 
     class Meta:
         db_table = "complainmsg"
+        
+#Period model
+class period(models.Model):
+    pid = models.IntegerField(primary_key=True)
+    term = models.CharField(max_length=12)
+    curPeriod = models.IntegerField(default=0)
+    curStatus = models.IntegerField(default=0)
+    
+    class Meta:
+        db_table = "period"
+        
+#Student Message Model
+class stuMsg(models.Model):
+    id = models.IntegerField(primary_key=True)
+    receiverID = models.IntegerField(default=0)
+    sender = models.CharField(max_length=20)
+    title = models.CharField(max_length=20)
+    content = models.CharField(max_length=256)
+    getTime = models.DateTimeField(default=datetime.now)
+    
+    class Meta:
+        db_table = "stuMsg"
+
+#Instructor Message Model
+class insMsg(models.Model):
+    id = models.IntegerField(primary_key=True)
+    receiverID = models.IntegerField(default=0)
+    title = models.CharField(max_length=20)
+    content = models.CharField(max_length=256)
+    getTime = models.DateTimeField(default=datetime.now)
+    
+    class Meta:
+        db_table = "insMsg"
