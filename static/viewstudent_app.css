@@ -1,0 +1,26 @@
+tr td{
+    text-align: center;
+    height: 30px;
+}
+
+.viewtable_id{width: 80px;}
+.viewtable_name{width: 220px;}
+.viewtable_GPA{width: 80px;}
+.viewtable_status{width: 250px;}
+.viewtable_action{width: 60 px;}
+
+.paginator ul li{
+    list-style-type: none; 
+    float: left;
+    display: block;
+    height: 30px;
+    width: 50px;
+    margin-top: 20px;
+}
+
+.search_form{
+    float: right;
+    height: 30px;
+    margin-top: 20px;
+}
+

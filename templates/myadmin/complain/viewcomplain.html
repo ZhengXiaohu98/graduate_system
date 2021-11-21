@@ -1,0 +1,82 @@
+{% extends 'myadmin/base.html' %}
+{% load static %}
+
+{% block style_sheet %}
+    <link rel="stylesheet" type="text/css" href="{% static 'base.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'viewcomplain.css' %}"/>
+{% endblock %}
+
+{% block main_body %}
+    <h1 style="font-size: 20; color:aqua; font-weight:bold;">Complain Received</h1>
+    <hr>
+    <table border = "1px" style="border-collapse: collapse;">
+        <thead>
+        <tr style="height: 50px; font: size 30px;">
+            <th class = "viewtable_id">ID</th>
+            <th class = "viewtable_sendtype">Sender Type</th>
+            <th class = "viewtable_sendid">Sender ID</th>
+            <th class = "viewtable_sendname">Sender</th>
+            <th class = "viewtable_retype">Receiver Type</th>
+            <th class = "viewtable_reid">Receiver ID</th>
+            <th class = "viewtable_rename">Receiver</th>
+            <th class = "viewtable_time">Received Time</th>
+            <th class = "viewtable_status">Status</th>
+            <th class = "viewtable_action">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for cp in cplist %}
+        <tr>
+            <td>{{cp.id}}</td>
+            <td>{{cp.sendType}}</td>
+            <td>{{cp.fromId}}</td>
+            <td>{{cp.fromName}}</td>
+            <td>{{cp.receiveType}}</td>
+            <td>{{cp.receiveId}}</td>
+            <td>{{cp.receiveName}}</td>
+            <td>{{cp.createdTime}}</td>
+            <td>
+                {% if cp.curStatus == 0 %}
+                    <span style="color:rgb(25, 131, 238)">Pending</span>
+                {% elif cp.curStatus == 2 %}
+                    <span style="color:rgb(241, 48, 23)">Rejected</span>
+                {% else %}
+                    <span style="color:greenyellow">Approved</span>
+                {% endif %}
+            </td>
+            <td style="text-align: center;">
+                <a href="{% url 'complain_deal' cp.id %}" id = "action" style="display: block;
+                height:18px; 
+                width:60px; 
+                background-color:#40a0fa; 
+                font-weight: bold;
+                border-radius: 10px;
+                text-align:center;">View</a>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div class = "paginator">
+        <ul>
+            <li>
+                <a href="{% url 'complain_view' pIndex|add:-1 %}?{{myKey|join:'&'}}">prev</a>
+            </li>
+            {% for i in pRange %}
+                <li>
+                    <a href="{% url 'complain_view' i %}?{{myKey|join:'&'}}" {% if i == pIndex %} style="color: red;" {% endif %}>{{i}}</a>
+                </li>
+            {% endfor %}
+            <li>
+                <a href="{% url 'complain_view' pIndex|add:1 %}?{{myKey|join:'&'}}">next</a>
+            </li>
+        </ul>
+    </div>
+    <div class="search_form">
+        <form action="{% url 'complain_view' 1 %}" method="get">
+            <input type="text" name="keyword">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+    <br><br><br>
+{% endblock %}

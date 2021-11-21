@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        div{
+            width: 1300px;
+            position: absolute;
+            left: 45%;
+            margin-left: -500px;
+        }
+        div ul li{
+            float: left;
+            list-style-type: none;
+        }
+        div ul li a{
+            display: block;
+            width: 200px;
+            height: 40px;
+            color: #fff;
+            text-align: center;
+            line-height: 40px;
+            background: #f00;
+            text-decoration: none;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <ul>
+            <li><a href="{% url 'student_login' %}" >Student Login</a></li>
+            <li><a href="{% url 'instructor_login' %}">Instructor Login</a></li>
+            <li><a href="{% url 'student_application' %}">Apply to be a student</a></li>
+            <li><a href="{% url 'instructor_application' %}">Apply to be an instructor</a></li>
+            <li><a href="{% url 'student_application_check' %}">Check Student Application</a></li>
+            <li><a href="{% url 'instructor_application_check' %}">Check Instructor Application</a></li>
+        </ul>
+    </div>
+    <br/><br/><br/><br/><br/><br/><br/><br/>
+    <center>
+        {% block main_content %}
+        {% endblock %}
+    </center>
+</body>
+</html>

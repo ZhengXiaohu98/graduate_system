@@ -1,0 +1,85 @@
+{% extends 'myadmin/base.html' %}
+{% load static %}
+
+{% block style_sheet %}
+    <link rel="stylesheet" type="text/css" href="{% static 'base.css' %}"/>
+    <!-- <link rel="stylesheet" type="text/css" href="{% static 'viewstudent.css' %}"/> -->
+{% endblock %}
+
+{% block main_body %}
+<center>
+    <h1>Manage Course</h1>
+    <hr/>
+    <h2>Add Course</h2>
+    <form action="{% url 'course_insert'  %}" method = "post">
+        {% csrf_token %}
+        <table width="280" border="0">
+            <tr>
+                <td>Course id:</td>
+                <td><input type = "text" name = "cid"/></td>
+            </tr>
+            <tr>
+                <td>Class Name:</td>
+                <td><input type = "text" name = "classname"/></td>
+            </tr>
+            <tr>
+                <td><label for="ins">Instructor Name:</label></td>
+                <td>
+                    <select name = "iid" id = "ins">
+                        {% for i in insList %}
+                            <option value = {{i.iid}}>{{i.insName}}</option>
+                        {% endfor %}
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>days:</td>
+                <td>
+                    <input type="checkbox" id="mo" name="mo" value="Mo">
+                    <label for="mo"> Mo</label>
+                    <input type="checkbox" id="tu" name="tu" value="Tu">
+                    <label for="tu"> Tu</label>
+                    <input type="checkbox" id="we" name="we" value="We">
+                    <label for="we"> We</label>
+                    <input type="checkbox" id="th" name="th" value="Th">
+                    <label for="th"> Th</label>
+                    <input type="checkbox" id="fr" name="fr" value="Fr">
+                    <label for="fr"> Fr</label>
+                    <input type="checkbox" id="sa" name="sa" value="Sa">
+                    <label for="sa"> Sa</label>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="time">Start_time:</label></td>
+                <td>
+                    <select name = "start_time" id = "time">
+                        <option value = 'a' selected><time>8:15</time></option>
+                        <option value = 'b'><time>9:00</time></option>
+                        <option value = 'c'><time>10:00</time></option>
+                        <option value = 'd'><time>11:00</time></option>
+                        <option value = 'e'><time>12:30</time></option>
+                        <option value = 'f'><time>14:00</time></option>
+                        <option value = 'g'><time>15:30</time></option>
+                        <option value = 'h'><time>18:00</time></option>
+                        <option value = 'i'><time>19:00</time></option>
+                        <option value = 'j'><time>20:00</time></option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Duration:</td>
+                <td><input type = "text" name = "duration"/></td>
+            </tr>
+            <tr>
+                <td>Max Limit:</td>
+                <td><input type = "text" name = "max_limit"/></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <input type = "submit" value = "Add"/>
+                </td>
+            </tr>
+        </table>
+    </form>
+</center>
+{% endblock %}

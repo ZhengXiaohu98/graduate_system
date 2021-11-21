@@ -1,0 +1,127 @@
+{% extends 'student/base.html' %}
+
+{% block title1 %}Main Page{% endblock %}
+
+{% block style%}
+    <style>
+        #record {float:left; margin-right: 10px;}
+        #notification{float:left; margin-left: 10px; }
+        th {background-color:rgb(184, 228, 252)}
+        h3 {color: red;}
+        #main-page a{color: steelblue;}
+    </style>
+{% endblock %}
+
+{% block name%}{{userinfo.stuName}}{% endblock %}
+
+{% block username%}{{userinfo.username}}{% endblock %}
+
+{% block url%}
+        <ul class = "contents-list">
+            <li class = "on"><a href="{% url 'student_index' %}">Current Information</a></li>
+            <li><a href="{% url 'student_CourseManage' %}">Course Management</a></li>
+            <li><a href="{% url 'student_SearchCourse' 0 %}">Search Course</a></li>
+            <li><a href="{% url 'student_AcademicRecord' %}">Academic Record</a></li>
+            <li><a href="{% url 'student_complain' %}">Complain</a></li>
+            <li><a href="{% url 'student_setting' %}">Setting</a></li>
+        </ul>
+{% endblock %}
+
+
+{% block Body%}
+    <div id = "main-page" width = 100% class = "current-info">
+        <h1>Current Information</h1>
+        <div id = "record">
+            <div  {% if userinfo.curStatus == 0 %} visiability: hideen {% endif %}>
+                <center>
+                <h2 >courses Taking {{term}}</h2>
+                {% if taking == 0 %}
+                    <table width = 700px >
+                        <tr>
+                            <td align="center" ><h3>{{info}}</h3></td>
+                        </tr>
+                    </table>
+                    
+                {%else %}
+                    <table id = "course" width= 700px border = '1' >
+                        <tr>
+                            <th>Course ID</th>
+                            <th>Class Name</th>
+                            <th>Section#</th>
+                            <th>Instructor</th>
+                            <th>Days</th>
+                            <th>Time</th>
+                            <th>Operation</th>
+                        </tr>
+
+                        {% for r in course %}
+                        <tr>
+                            <td>{{r.cid}}</td>
+                            <td>{{r.className}}</td>
+                            <td>{{r.section}}</td>
+                            <td>{{r.insName}}</td>
+                            <td>{{r.day}}</td>
+                            <td>{{r.time}}</td>
+                            <td><a href="">Write a review</a></td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                    <br/>
+                        未完成: 需要按period来显示写review的操作
+                {% endif %}
+                </center>
+            </div>
+            <br/>
+            <div id = current-information>
+                <table width=400px>
+                    <tr>
+                        <td>Class Taking:</td>
+                        <td>{{userinfo.class_taking}}</td>
+                    </tr>
+                    <tr>
+                        <td>Class Complete:</td>
+                        <td>{{userinfo.class_taken}}</td>
+                    </tr>
+                    <tr>
+                        <td>GPA:</td>
+                        <td>{{userinfo.GPA}}</td>
+                    </tr>
+                    <tr>
+                        <td>Current Status:</td>
+                        <td>
+                            {% if userinfo.curStatus == 1 %}
+                                Nomal
+                            {% elif userinfo.curStatus == 2 %}
+                                Graduate
+                            {% else %}
+                                Suspended <a href="">Pay the fine</a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>    
+
+        <div id = "notification">
+            <center>
+                <h2>Notification</h2>
+                <table width= 430px border = '1'>
+                    <tr>
+                        <th></th>
+                        <th>List</th>
+                        <th>Date</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td><a href="">例：Grade posted/recieved a warming</a></td>
+                        <td>mm/dd/yy</td>
+                    </tr>
+
+                </table>
+                <br/>
+                未完成!
+            </center>
+        </div>   
+    </div>
+    
+{% endblock %}

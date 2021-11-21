@@ -1,0 +1,64 @@
+{% extends 'myadmin/base.html' %}
+{% load static %}
+
+{% block style_sheet %}
+    <link rel="stylesheet" type="text/css" href="{% static 'base.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'view_course.css' %}"/>
+{% endblock %}
+
+{% block main_body %}
+    <h1 style="font-size: 20; color:aqua; font-weight:bold;">Course Management</h1>
+    <hr>
+    <table border = "1px" style="border-collapse: collapse;">
+        <thead>
+        <tr style="height: 50px; font: size 30px;">
+            <th class = "viewtable_id">Course ID</th>
+            <th class = "viewtable_name">Class Name</th>
+            <th class = "viewtable_department">Department</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for c in courselist %}
+        <tr>
+            <td>{{c.cid}}</td>
+            <td>{{c.className}}</td>
+            <td>{{c.department}}</td>
+            <td style="text-align: center;">
+                <a href="{% url 'course_edit' c.cid %}" id = "action" style="display: block;
+                height:18px; 
+                width:60px; 
+                background-color:#40a0fa; 
+                font-weight: bold;
+                border-radius: 10px;
+                text-align:center;">Edit</a>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div class = "paginator">
+        <ul>
+            <li>
+                <a href="{% url 'course_view' pIndex|add:-1 %}?{{myKey|join:'&'}}">prev</a>
+            </li>
+            {% for i in pRange %}
+                <li>
+                    <a href="{% url 'course_view' i %}?{{myKey|join:'&'}}" {% if i == pIndex %} style="color: red;" {% endif %}>{{i}}</a>
+                </li>
+            {% endfor %}
+            <li>
+                <a href="{% url 'course_view' pIndex|add:1 %}?{{myKey|join:'&'}}">next</a>
+            </li>
+        </ul>
+    </div>
+    <div class="search_form">
+        <form action="{% url 'course_view' 1 %}" method="get">
+            <input type="text" name="keyword">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+    <br><br><br>
+    <div>
+        <a href="{% url 'course_add' %}" id = "add_course">Add A New Course</a>
+    </div>
+{% endblock %}

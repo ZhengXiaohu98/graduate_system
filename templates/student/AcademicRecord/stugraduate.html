@@ -1,0 +1,65 @@
+{% extends 'student/base.html' %}
+
+{% block title1 %}Academic Record{% endblock %}
+
+{% block style%}
+    <style>
+       h4 {color: red;}
+       td {padding: 10px; line-height: 20px; font-size: 15px;}
+       #graduate-info a {color:steelblue}
+    </style>
+    </style>
+{% endblock %}
+
+{% block name%}{{userinfo.stuName}}{% endblock %}
+
+{% block username%}{{userinfo.username}}{% endblock %}
+
+{% block url%}
+        <ul class = "contents-list">
+            <li><a href="{% url 'student_index' %}">Current Information</a></li>
+            <li><a href="{% url 'student_CourseManage' %}">Course Management</a></li>
+            <li><a href="{% url 'student_SearchCourse' 0 %}">Search Course</a></li>
+            <li class = "on"><a href="{% url 'student_AcademicRecord' %}">Academic Record</a></li>
+            <li><a href="{% url 'student_complain' %}">Complain</a></li>
+            <li><a href="{% url 'student_setting' %}">Setting</a></li>
+        </ul>
+{% endblock %}
+
+{% block Body %} 
+    <div class ="AcademicRecord">
+        <h1> My Academic</h1>
+        <center>
+            <h2> Apply Graduate</h2>
+            <h4>!! All student must complete 8 classes in order to apply graduation !! </h4>
+            <table width= 20%>
+                <tr>
+                    <td>Total Class Taken:</td>
+                    <td>{{taken}}</td>
+                </tr>
+                <tr>
+                    <td>Current Class Taking:</td>
+                    <td>{{current}}</td>
+                </tr>
+                <tr>
+                    <td>Completed Classes: </td>
+                    <td>{{passed}}</td>
+                </tr>
+            </table>
+            <br/>
+
+            <div id = "graduate-info">
+                {% if passed == 8 %}
+                    You are eligible to apply for graduation!
+                    <a href="{% url 'AcademicRecord_graduate_apply' %}"> Apply graduation</a>
+                {% else %}
+                    You are not eligible to apply for graduation! You need to complete {{require}} more courses. <br/><br/>
+                    
+                    <a href ="{% url 'AcademicRecord_history' %}" > View Course History</a></li>
+                {% endif %}
+            </div>
+        </center>
+    </div>
+
+
+{% endblock %}

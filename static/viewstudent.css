@@ -1,0 +1,49 @@
+tr td{
+    text-align: center;
+    height: 30px;
+}
+
+.viewtable_id{width: 50px;}
+.viewtable_name{width: 200px;}
+.viewtable_username{width: 120px;}
+.viewtable_password{width: 100px;}
+.viewtable_gender{width: 80px;;}
+.viewtable_GPA{width: 80px;}
+.viewtable_email{width: 220px;}
+.viewtable_cp{width: 120px;}
+.viewtable_classtaking{width: 120px;}
+.viewtable_classtaken{width: 120px;}
+.viewtable_status{width: 120px;}
+.viewtable_action{width: 60px;}
+
+.paginator ul li{
+    list-style-type: none; 
+    float: left;
+    display: block;
+    height: 30px;
+    width: 50px;
+    margin-top: 20px;
+}
+
+.search_form{
+    float: right;
+    height: 30px;
+    margin-top: 20px;
+}
+
+#add_stu{
+    float: left;
+    display: block;
+    height: 40px;
+    width: 125px;
+    background-color: palegreen;
+    line-height: 35px;
+    color: red;
+    border-radius: 10px;
+    text-align: center;
+}
+
+#add_stu:hover{
+    background-color: rgb(236, 115, 210);
+    color: rgb(96, 56, 241);
+}

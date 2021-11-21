@@ -1,0 +1,72 @@
+{% load static %}
+
+<!-- load all the required stylesheet-->
+<!-- {% block style_sheet %}
+    <link rel="stylesheet" type="text/css" href="{% static 'base.css' %}"/>
+{% endblock %} -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block title %}
+    {% endblock %}
+    <style>
+        body{
+            background-image: url("/static/img/dog.jpg");
+            background-size: cover;
+        }
+        ul.nav {
+            padding-left: 0px;
+            background-color: #3D99CE;
+            text-align: center;
+        }
+        ul.nav > li {
+            display: inline-block;
+            padding: 40px 50px;
+        }
+        ul.nav > li:hover {
+            background-color: #2779BF;
+        }
+        ul.nav > li > a {
+            font-size: large;
+            color: white;
+            text-decoration: none;
+        }
+        .instructor{
+            border: 10px outset red;
+            background-color: lightblue;
+            font-size: xx-large;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1 align="center">Welcome to the Instructor website</h1>
+    
+    <div class="instructor">
+        {% block name %}
+        {% endblock %}
+    </div>
+    <ul class="nav">
+        <li><a href="{% url 'profile_edit' %}">Profile</a></li>
+        <li><a href="{% url 'course_list' %}">Courses List</a></li>
+        <li><a href="{% url 'complain' %}">Complain Page</a></li>
+        <li><a href="#">Notification</a></li>
+        <li><a href="{% url 'instructor_logout' %}" id = 'logout'>Logout</a></li>
+    </ul>
+    <table border="0" width="100%" height="1100">
+        <tr>
+            <td class="main_content" width="50%" align="center">
+                <div>
+                    {% block main_body %}
+                    {% endblock %}
+                </div>
+            </td>
+        </tr>
+    </table>
+    
+</body>
+</html>

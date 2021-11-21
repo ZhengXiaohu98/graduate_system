@@ -1,0 +1,40 @@
+{% extends 'instructor/base.html' %}
+
+{% block title %}
+<title>Courses</title>
+{% endblock %}
+
+{% block name %}
+{{name}}
+{% endblock %}
+
+{% block main_body %}
+<center>
+    <h1>Course List</h1>
+    <table width= "800" border="1">
+    <tr>
+        <td>Section Number</td>
+        <td>ClassName</td>
+        <td>Year</td>
+        <td>Current Enrolled</td>
+        <td>Wait list</td>
+        <td>Status</td>
+        <td>Class Rating</td>
+        <td>Action</td>
+    </tr>
+    {% for c in course %}
+        <tr>
+            <td>{{ c.sectionNum}}</td>
+            <td>{{ c.className }}</td>
+            <td>{{ c.year }}</td>
+            <td>{{ c.current_enroll }}</td>
+            <td>{{ c.wait_list }}</td>
+            <td>{{ c.status }}</td>
+            <td>{{ c.rating }}</td>
+            <td><a href="{% url 'stuInCourse' c.sectionNum %}">View Students</a></td>
+        </tr>
+    {% endfor %}
+    </table>
+
+</center>
+{% endblock %}

@@ -1,0 +1,124 @@
+{% extends 'student/base.html' %}
+
+{% block title1 %}Complain{% endblock %}
+
+{% block style%}
+    <style>
+        #complainform{float:left; margin-right: 10px;}
+        #complainhistory{float: left; margin-left: 10px;}
+        #complainform td{ padding:20px; line-height:30px;}
+        th {background-color:rgb(184, 228, 252);}
+        h4 {color: red;}
+        #complainform a {color:steelblue}
+    </style>
+{% endblock %}
+
+{% block name%}{{userinfo.stuName}}{% endblock %}
+
+{% block username%}{{userinfo.username}}{% endblock %}
+
+{% block url%}
+        <ul class = "contents-list">
+            <li><a href="{% url 'student_index' %}">Current Information</a></li>
+            <li><a href="{% url 'student_CourseManage' %}">Course Management</a></li>
+            <li><a href="{% url 'student_SearchCourse' 0 %}">Search Course</a></li>
+            <li><a href="{% url 'student_AcademicRecord' %}">Academic Record</a></li>
+            <li  class = "on"><a href="{% url 'student_complain' %}">Complain</a></li>
+            <li><a href="{% url 'student_setting' %}">Setting</a></li>
+        </ul>
+{% endblock %}
+
+{% block Body %} 
+    <div class ="complain">
+        <h1>Complain</h1>
+        
+        <div id = "complainform">
+            <center>
+            <h3>Complain Student</h3>
+            <form class = "stuform" action = "{% url 'complain_student_submit' %}" method = "post">
+                {% csrf_token %}
+                <input type = "hidden" name = "id" value = "{{userinfo.sid}}"/> 
+                <table width= 580px>
+                    <tr>
+                        <td>Type:</td>
+                        <td>
+                            Student |
+                            <a href="{% url 'complain_instructor' 0 0 0 1 %}"> Instructor</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Student Name:</td>
+                        <td>
+                            <select name = "name">
+                                <option>Choose Student Name</option>
+                                {% for r in course %}
+                                    <optgroup label = {{r.label}}></optgroup>
+                                    {% for stu in studentName %}
+                                        {% if stu.cid == r.cid %}
+                                        <option {% if name == stu.names %} selected {% endif %}>{{stu.names}} </option>
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endfor %}
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Description:</td>
+                        <td><textarea name="description" rows="6" cols="50">{% if description != "0" %}{{description}}{% endif %}</textarea></td>
+                    </tr>
+                </table>
+
+                {% if info != "0" %}
+                    <h4>{{info}}</h4>
+                {% endif %}
+                <input type="submit" value = "Submit"/>
+            </form>
+            </center>
+        </div>
+
+        <div id = "complainhistory">
+            <center>
+                <h3>Complain History</h3>
+                <table width = 600px border = "1">
+                    <tr >
+                        <th></th>
+                        <th>Instructor/Student</th>
+                        <th>Receiver Name</th>
+                        <th>Date & Time</th>
+                        <th>Status</th>
+                    </tr>
+                    {% for i in complain %}
+                    <tr>
+                        <td>{{i.num}}</td>
+                        <td>{{i.type}}</td>
+                        <td>{{i.receiver}}</td>
+                        <td>{{i.time}}</td>
+                        <td>{{i.status}}</td>
+                    </tr>
+                    {% endfor %}
+
+                </table>
+                {% if check == 0 %}
+                    <br/><h4>{{historyinfo}}</h4><br/>
+                {% endif %}
+                
+                <br/>
+                <a href ="{% url 'complain_student' 0 0 0 pIndex|add:-1 %}">Previous Page</a>
+                {% for p in pagelist %}
+                    {% if pIndex == p %}
+                    &nbsp;<a href=" {% url 'complain_student' 0 0 0 p %}" style = "color:steelblue;">{{p}}</a>  &nbsp;
+                    {% else %} 
+                    &nbsp;<a href=" {% url 'complain_student' 0 0 0 p %}">{{p}}</a>  &nbsp;
+                    {% endif %}
+                {% endfor %}   
+            
+                <a href ="{% url 'complain_student' 0 0 0 pIndex|add:1 %}">Next Page</a>
+
+            </center>
+        </div>
+    </div>
+
+    
+
+
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends 'student/base.html' %}
+
+{% block title1 %}Academic Record{% endblock %}
+
+{% block style%}
+    <style>
+        #gpa {position: absolute; right: 12%;}
+        th {background-color:rgb(184, 228, 252)}
+    </style>
+{% endblock %}
+
+{% block name%}{{userinfo.stuName}}{% endblock %}
+
+{% block username%}{{userinfo.username}}{% endblock %}
+
+{% block url%}
+        <ul class = "contents-list">
+            <li><a href="{% url 'student_index' %}">Current Information</a></li>
+            <li><a href="{% url 'student_CourseManage' %}">Course Management</a></li>
+            <li><a href="{% url 'student_SearchCourse' 0 %}">Search Course</a></li>
+            <li class = "on"><a href="{% url 'student_AcademicRecord' %}">Academic Record</a></li>
+            <li><a href="{% url 'student_complain' %}">Complain</a></li>
+            <li><a href="{% url 'student_setting' %}">Setting</a></li>
+        </ul>
+{% endblock %}
+
+{% block Body %} 
+    <div class ="AcademicRecord">
+        <h1> My Academic</h1>
+        <center>
+            <h2> My Course History</h2>
+            <table width =80% border = "1">
+                <tr>
+                    <th>Term</th>
+                    <th>Course ID</th>
+                    <th>Class Name</th>
+                    
+                    <th>Instructor</th>
+                    <th>Status</th>
+                    <th>Grade</th>
+                </tr>
+                {% for r in data %}
+                    <tr>
+                        <td>{{r.year}} {{r.semester}}</td>
+                        <td>{{r.cid}}</td>
+                        <td>{{r.className}}</td>
+
+                        <td>{{r.insName}}</td>
+                        <td>{{r.curStatus}}</td>
+                        <td>{{r.grade}}</td>
+
+                    </tr>
+                {% endfor %}
+            </table>
+            <div id="gpa">Current GPA = {{userinfo.GPA}}</div>
+        </center>
+    </div>
+
+
+{% endblock %}

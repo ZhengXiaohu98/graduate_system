@@ -1,0 +1,50 @@
+tr td{
+    text-align: center;
+    height: 30px;
+}
+
+.viewtable_id{width: 100px;}
+.viewtable_name{width: 250px;}
+.viewtable_department{width: 350px;}
+.viewtable_insName{width: 150px;}
+.viewtable_days{width: 150px;}
+.viewtable_start_time{width: 200px;;}
+.viewtable_duration{width: 80px;}
+.viewtable_max_limit{width: 100px;}
+.viewtable_current_enroll{width: 100px;}
+.viewtable_wait_list{width: 100px;}
+.viewtable_rating{width: 100px;}
+.viewtable_action{width: 60px;}
+
+
+.paginator ul li{
+    list-style-type: none; 
+    float: left;
+    display: block;
+    height: 30px;
+    width: 50px;
+    margin-top: 20px;
+}
+
+.search_form{
+    float: right;
+    height: 30px;
+    margin-top: 20px;
+}
+
+#add_course{
+    float: left;
+    display: block;
+    height: 40px;
+    width: 155px;
+    background-color: palegreen;
+    line-height: 35px;
+    color: red;
+    border-radius: 10px;
+    text-align: center;
+}
+
+#add_course:hover{
+    background-color: rgb(236, 115, 210);
+    color: rgb(96, 56, 241);
+}

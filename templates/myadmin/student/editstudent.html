@@ -1,0 +1,70 @@
+{% extends 'myadmin/base.html' %}
+{% load static %}
+
+{% block style_sheet %}
+    <link rel="stylesheet" type="text/css" href="{% static 'base.css' %}"/>
+    <!-- <link rel="stylesheet" type="text/css" href="{% static 'viewstudent.css' %}"/> -->
+{% endblock %}
+
+{% block main_body %}
+<center>
+    <h1>Manage Student</h1>
+    <hr/>
+    <h2>Edit Student</h2>
+    <form action="{% url 'student_update'  %}" method = "post">
+        {% csrf_token %}
+        <input type="hidden" name = "sid" value="{{stu.sid}}" />
+        <table width="280" border="0">
+            <tr>
+                <td>Username:</td>
+                <td><input type = "text" name = "username" value = "{{stu.username}}"/></td>
+            </tr>
+            <tr>
+                <td>Password:</td>
+                <td><input type = "text" name = "password" value = "{{stu.pw}}"/></td>
+            </tr>
+            <tr>
+                <td>Name:</td>
+                <td><input type = "text" name = "name" value = "{{stu.stuName}}"/></td>
+            </tr>
+            <tr>
+                <td>Gender:</td>
+                <td>
+                    M:<input type = "radio" name = "gender" value = "M" {% if stu.gender == 'M' %} checked {% endif %}/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    F:<input type = "radio" name = "gender" value = "F" {% if stu.gender == 'F' %} checked {% endif %}/>
+                </td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td><input type = "text" name = "email" value = "{{stu.email}}"/></td>
+            </tr>
+            <tr>
+                <td><label for="stat">Current status:</label></td>
+                <td>
+                    <select name = "status" id = "stat">
+                        {% if stu.curStatus == 0 %}
+                            <option value = 'S' selected>Suspended</option>
+                            <option value = 'N'>Normal</option>
+                            <option value = 'G'>Graduated</option>
+                        {% elif stu.curStatus == 1 %}
+                            <option value = 'S'>Suspended</option>
+                            <option value = 'N' selected>Normal</option>
+                            <option value = 'G'>Graduated</option>
+                        {% else %}
+                            <option value = 'S'>Suspended</option>
+                            <option value = 'N'>Normal</option>
+                            <option value = 'G' selected>Graduated</option>
+                        {% endif %}
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <input type = "submit" value = "Submit"/>
+                </td>
+            </tr>
+        </table>
+    </form>
+</center>
+{% endblock %}

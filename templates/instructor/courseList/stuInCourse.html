@@ -1,0 +1,60 @@
+{% extends 'instructor/base.html' %}
+
+
+{% block title %}
+<title>Students</title>
+{% endblock %}
+
+{% block name %}
+{{name}}
+{% endblock %}
+
+{% block main_body %}
+<center>
+    <h1>Student List </h1>
+    <h2>{{ sectionNum}}</h2>
+    <h3>{{ className }}</h3>
+    
+        
+        <table width= "800" border="1">
+            <tr>
+                <td>sid</td>
+                <td>name</td>
+                <td>Year</td>
+                <td>semester</td>
+                <td>grade</td>
+                <td>curStatus</td>
+                <td>Give Grade</td>
+            
+            </tr>
+            {% for s in students %}
+                <tr>
+                    <td>{{ s.sid }}</td>
+                    <td>{{ s.name }}</td>
+                    <td>{{ s.year }}</td>
+                    <td>{{ s.semester }}</td>
+                    <td>{{ s.grade }}</td>
+                    <td>{{ s.curStatus }}</td>
+                    <td>
+                        <form action="{% url 'grade_update' sectionNum %}" method="post">
+                        {% csrf_token %}
+                        <select name = "grade" id = "grade" >
+                            <option value = "None" {% if s.grade == '' %} selected {% endif %}>None</option>
+                            <option value = 'A'{% if s.grade == "A" %} selected {% endif %}>A</option>
+                            <option value = 'B'{% if s.grade == "B" %} selected {% endif %}>B</option>
+                            <option value = 'C'{% if s.grade == "C" %} selected {% endif %}>C</option>
+                            <option value = 'D'{% if s.grade == "D" %} selected {% endif %}>D</option>
+                            <option value = 'F'{% if s.grade == "F" %} selected {% endif %}>F</option>
+                        </select>
+                        <input type = "submit" value = "Update" />
+                        <input type="hidden" name = "sid"  value="{{s.sid}}" />
+                        
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+        
+    
+</center>
+{% endblock %}
