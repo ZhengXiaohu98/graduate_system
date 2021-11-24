@@ -13,9 +13,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% block title %}
     {% endblock %}
+    {% block style %}
+    {% endblock %}
     <style>
         body{
-            background-image: url("/static/img/dog.jpg");
+            background-image: url("/static/img/Venice.png");
             background-size: cover;
         }
         ul.nav {
@@ -53,11 +55,11 @@
     <ul class="nav">
         <li><a href="{% url 'profile_edit' %}">Profile</a></li>
         <li><a href="{% url 'course_list' %}">Courses List</a></li>
-        <li><a href="{% url 'complain' %}">Complain Page</a></li>
+        <li><a href="{% url 'complain' 1 %}">Complain Page</a></li>
         <li><a href="#">Notification</a></li>
         <li><a href="{% url 'instructor_logout' %}" id = 'logout'>Logout</a></li>
     </ul>
-    <table border="0" width="100%" height="1100">
+    <table border="0" width="100%" height="800">
         <tr>
             <td class="main_content" width="50%" align="center">
                 <div>

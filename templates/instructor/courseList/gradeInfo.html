@@ -10,6 +10,7 @@
 
 {% block main_body %}
 <h1>Grading Info</h1>
-
 <span>{{info}}</span>
+<br/>
+<a href=" {% url 'stuInCourse' sectionNum%} ">Grade Another Student</a>
 {% endblock %}
