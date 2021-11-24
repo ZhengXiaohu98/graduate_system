@@ -15,7 +15,7 @@
 
 {% block url%}
         <ul class = "contents-list">
-            <li><a href="{% url 'student_index' %}">Current Information</a></li>
+            <li><a href="{% url 'student_index' 1 %}">Current Information</a></li>
             <li><a href="{% url 'student_CourseManage' %}">Course Management</a></li>
             <li class = "on"><a href="{% url 'student_SearchCourse' 0 %}">Search Course</a></li>
             <li><a href="{% url 'student_AcademicRecord' %}">Academic Record</a></li>
@@ -56,15 +56,18 @@
                         <td>{{r.day}}</td>
                         <td>{{r.time}}</td>
                         <td>{{r.status}}</td>
-                        {% if r.status == 'Open' %}
-                        <td><a href = "">Add</a></td>
+                        {% if r.period == 2 or r.period == 3 %}
+                            {% if r.Added == 0 and r.status != 'Close' %}
+                            <td><a href = "{% url 'SearchCourse_courses_info' r.section search %}">Add</a></td>
+                            {% else %}
+                            <td></td>
+                            {% endif %}
                         {% else %}
                         <td></td>
                         {% endif %}
                     </tr>
                     {% endfor %}
                 </table>
-                未完成：add操作需要判断 1. 已经添加的课程是否达到上限（4节）2. 课程是否人满，满人进waitlist
                 <br/>
                 <a href="{% url 'student_SearchCourse' 0  %}">New Search</a> | <a href="{% url 'SearchCourse_modify' search %}"> Modify Search</a>
             </center>

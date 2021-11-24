@@ -8,7 +8,7 @@
 
 {% block url%}
         <ul class = "contents-list">
-            <li><a href="{% url 'student_index' %}">Current Information</a></li>
+            <li><a href="{% url 'student_index' 1 %}">Current Information</a></li>
             <li><a href="{% url 'student_CourseManage' %}">Course Management</a></li>
             <li><a href="{% url 'student_SearchCourse' 0 %}">Search Course</a></li>
             <li class = "on"><a href="{% url 'student_AcademicRecord' %}">Academic Record</a></li>

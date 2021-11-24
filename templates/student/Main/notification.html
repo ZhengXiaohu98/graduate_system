@@ -1,0 +1,54 @@
+{% extends 'student/base.html' %}
+
+{% block title1 %}Notification{% endblock %}
+
+{% block style%}
+    <style>
+        #Notification a{color: steelblue;}
+        td{padding: 10px; line-height: 20px; font-size: 15px; padding-top: 30px;}
+        table {margin-left: 25%;margin-right: 25%;}
+    </style>
+{% endblock %}
+
+{% block name%}{{userinfo.stuName}}{% endblock %}
+
+{% block username%}{{userinfo.username}}{% endblock %}
+
+{% block url%}
+        <ul class = "contents-list">
+            <li class = "on"><a href="{% url 'student_index' 1 %}">Current Information</a></li>
+            <li><a href="{% url 'student_CourseManage' %}">Course Management</a></li>
+            <li><a href="{% url 'student_SearchCourse' 0 %}">Search Course</a></li>
+            <li><a href="{% url 'student_AcademicRecord' %}">Academic Record</a></li>
+            <li><a href="{% url 'student_complain' %}">Complain</a></li>
+            <li><a href="{% url 'student_setting' %}">Setting</a></li>
+        </ul>
+{% endblock %}
+
+
+{% block Body%}
+    <div id = "Notification" width = 100% class = "current-info">
+        <h1>Current Information</h1>
+        <div id = "notification_detail">
+            <center>
+            <h2>Notification Detail</h2> <br/>
+            <h3>{{notification.title}}</h3><br/>
+            <table width= 50%>
+                <tr>
+                    <td>Sender:</td>
+                    <td id = "info">{{notification.sender}}</td>
+                </tr>
+                <tr>
+                    <td>Time: </td>
+                    <td id = "info">{{notification.getTime}}</td>
+                </tr>
+                <tr>
+                    <td>Content:</td>
+                    <td id = "info">{{notification.content}}</td>
+                </tr>
+            </table><br/><br/>
+            <a href ="{% url 'student_index' 1 %}">Back</a>
+            </center>
+         </div>
+    </div>
+{% endblock %}

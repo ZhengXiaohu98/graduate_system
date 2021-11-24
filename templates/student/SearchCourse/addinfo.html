@@ -7,6 +7,7 @@
 {% block style %}
     <style>
         #SearchCourse a {color:steelblue}
+        h4 {color:red}
     </style>
 {% endblock %}
 
@@ -27,11 +28,22 @@
     <div id ="SearchCourse">
         <h1> Search Courses</h1>
         <center>
-            <h2> Search Result</h2>
+            <h2>Information </h2>
             <br/>
-            <h3 >{{info}}</h3>
-            <br/>
-            <a href="{% url 'student_SearchCourse' 0 %}">New Search</a> | <a href="{% url 'SearchCourse_modify' search %}"> Modify Search</a>
+            {% if status == 0 %}
+                <h4>! ! ERR0R ! !</h4>
+            {% elif status == 2 %}
+                <h4>! ! PENDING ! !</h4>
+            {% else %}
+                <h4>! ! SUCCESSFUL ! !</h4>
+            {% endif %}
+
+            <h3>{{info}}</h3>
+            <br/><br/>
+            <a href="{% url 'student_SearchCourse' 0 %}"> New Search</a> | 
+            <a href="{% url 'SearchCourse_modify' search %}"> Modify Search</a> |
+            <a href="{% url 'SearchCourse_courses' search %}"> Back to Search Result</a>
+            
         </center>
     </div>
 

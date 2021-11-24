@@ -17,7 +17,7 @@
 
 {% block url%}
         <ul class = "contents-list">
-            <li><a href="{% url 'student_index' %}">Current Information</a></li>
+            <li><a href="{% url 'student_index' 1 %}">Current Information</a></li>
             <li><a href="{% url 'student_CourseManage' %}">Course Management</a></li>
             <li><a href="{% url 'student_SearchCourse' 0 %}">Search Course</a></li>
             <li class = "on"><a href="{% url 'student_AcademicRecord' %}">Academic Record</a></li>
@@ -49,7 +49,9 @@
             <br/>
 
             <div id = "graduate-info">
-                {% if passed == 8 %}
+                {% if userinfo.curStatus == 2 %}
+                    <h3>You already Graduated!!</h3>
+                {% elif passed == 8 %}
                     You are eligible to apply for graduation!
                     <a href="{% url 'AcademicRecord_graduate_apply' %}"> Apply graduation</a>
                 {% else %}
