@@ -1,0 +1,100 @@
+{% extends 'student/base.html' %}
+
+{% block title1 %}Review{% endblock %}
+
+{% block style%}
+    <style>
+        #Summary {float: left; margin-right: 200px;}
+        #payment {float:left;}
+        h2{color: rgb(16, 102, 173);}
+        #payment a {color: steelblue;}
+        td {padding :15px}
+        input{width: 200px;}
+        #amount {width:185px;}
+        #submit {width:80px ; background-color:rgb(55, 167, 241); height: 35px; color:white;
+             border-radius: 8px; border-color: rgb(184, 217, 228); border-width: 3px; cursor: pointer;}
+        #submit:hover{background-color: rgb(33, 157, 240);}
+        #payment table{border: 3px solid rgb(88, 142, 187);border-radius: 8px;}
+        #info{color: red;}
+    </style>
+{% endblock %}
+
+{% block name%}{{userinfo.stuName}}{% endblock %}
+
+{% block username%}{{userinfo.username}}{% endblock %}
+
+{% block url%}
+        <ul class = "contents-list">
+            <li class = "on"><a href="{% url 'student_index' 1 %}">Current Information</a></li>
+            <li><a href="{% url 'student_CourseManage' %}">Course Management</a></li>
+            <li><a href="{% url 'student_SearchCourse' 0 %}">Search Course</a></li>
+            <li><a href="{% url 'student_AcademicRecord' %}">Academic Record</a></li>
+            <li><a href="{% url 'student_complain' %}">Complain</a></li>
+            <li><a href="{% url 'student_setting' %}">Setting</a></li>
+        </ul>
+{% endblock %}
+
+
+{% block Body%}
+    <div id = "payfine" width = 100% class = "current-info">
+        <h1>Current Information</h1><br/>
+        <h2>Pay Fine</h2>
+            <div id = Summary>
+                <h3>Account Summary </h3>
+                <table width= 300px>
+                    <tr>
+                        <td>Total Fine:</td>
+                        <td>$ {{fine.amount}}</td>
+                    </tr>
+                    <tr>
+                        <td>Amount paid:</td>
+                        <td>$ {{fine.paid}}</td>
+                    </tr>
+                    <tr>
+                        <td>Amount Remain:</td>
+                        <td>$ {{remain}}</td>
+                    </tr>
+                </table><br/>
+            </div>
+            <div id = "payment">
+                <h3>Payment Options:</h3>
+                <h4>Option 1: Pay In Person (Please pay to the address below)</h4>
+                Address : 1223 45st Manhattan, NY
+                <br/><br/><h4>Option 2: Pay Online</h4>
+                <form action = "{% url 'student_payfine_submit' %}" method = "post">
+                    {% csrf_token %}
+                    <table width= 500px>
+                        <tr>
+                            <td>Payment Amount:</td>
+                            <td>$ <input type = "text" id = "amount" placeholder="00.00" name = "PayAmount"></td>
+                        </tr>
+                        <tr>
+                            <td>Card Number:</td>
+                            <td><input type = "number" placeholder="0000-0000-0000-0000" name = "CardNum"></td>
+                        </tr>
+                        <tr>
+                            <td>Expire Date:</td>
+                            <td><input type = "date" name = "Expire"></td>
+                        </tr>
+                        <tr>
+                            <td>Name on Card:</td>
+                            <td><input type = "text" name = "Name"></td>
+                        </tr>
+                        <tr>
+                            <td>Security Code:</td>
+                            <td><input type = "password" name = "code"></td>
+                        </tr>
+                        <tr>                         
+                            <td></td>
+                            <td><input type="submit" id = "submit" value = "Pay Fine"/> </td>
+                        </tr>
+                    </table>
+                    {% if info != 0 %}
+                    <h3 id = "info">{{info}}</h3>
+                    {% endif %}<br/>
+                </form>
+                <a href ="{% url 'student_index' 1 %}">Back To Main Page</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,37 +1,37 @@
 {% extends 'student/base.html' %}
 
-{% block title1 %}SearchCourse{% endblock %}
+{% block title1 %}Info{% endblock %}
 
-{% block name%}{{userinfo.stuName}}{% endblock %}
-
-{% block style %}
+{% block style%}
     <style>
-        #SearchCourse a {color:steelblue}
+       #reviewSubmit a {color: steelblue;}
     </style>
 {% endblock %}
+
+{% block name%}{{userinfo.stuName}}{% endblock %}
 
 {% block username%}{{userinfo.username}}{% endblock %}
 
 {% block url%}
         <ul class = "contents-list">
-            <li><a href="{% url 'student_index' 1 %}">Current Information</a></li>
+            <li class = "on"><a href="{% url 'student_index' 1 %}">Current Information</a></li>
             <li><a href="{% url 'student_CourseManage' %}">Course Management</a></li>
-            <li class = "on"><a href="{% url 'student_SearchCourse' 0 %}">Search Course</a></li>
+            <li><a href="{% url 'student_SearchCourse' 0 %}">Search Course</a></li>
             <li><a href="{% url 'student_AcademicRecord' %}">Academic Record</a></li>
             <li><a href="{% url 'student_complain' %}">Complain</a></li>
             <li><a href="{% url 'student_setting' %}">Setting</a></li>
         </ul>
 {% endblock %}
 
+
 {% block Body %} 
-    <div id ="SearchCourse">
-        <h1> Search Courses</h1>
+    <div id ="reviewSubmit">
+        <h1> Current Information</h1>
         <center>
-            <h2> Search Result</h2>
-            <br/>
+            <br/><br/><br/>
             <h3 >{{info}}</h3>
-            <br/>
-            <a href="{% url 'student_SearchCourse' 0 %}">New Search</a> | <a href="{% url 'SearchCourse_modify' search %}"> Modify Search</a>
+            <br/><br/><br/>
+            <a href="{% url 'student_index' 1 %}">Back to Main Page</a>
         </center>
     </div>
 

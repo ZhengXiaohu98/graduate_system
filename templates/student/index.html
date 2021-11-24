@@ -5,10 +5,13 @@
 {% block style%}
     <style>
         #record {float:left; margin-right: 10px;}
-        #notification{float:left; margin-left: 10px; }
         th {background-color:rgb(184, 228, 252)}
+        #notification{float:left; margin-left: 10px; }
+        #notification table th{ background-color: rgb(115, 195, 238);}
         h3 {color: red;}
         #main-page a{color: steelblue;}
+        #UNREAD {color:red}
+        
     </style>
 {% endblock %}
 
@@ -18,7 +21,7 @@
 
 {% block url%}
         <ul class = "contents-list">
-            <li class = "on"><a href="{% url 'student_index' %}">Current Information</a></li>
+            <li class = "on"><a href="{% url 'student_index' 1 %}">Current Information</a></li>
             <li><a href="{% url 'student_CourseManage' %}">Course Management</a></li>
             <li><a href="{% url 'student_SearchCourse' 0 %}">Search Course</a></li>
             <li><a href="{% url 'student_AcademicRecord' %}">Academic Record</a></li>
@@ -34,7 +37,7 @@
         <div id = "record">
             <div  {% if userinfo.curStatus == 0 %} visiability: hideen {% endif %}>
                 <center>
-                <h2 >courses Taking {{term}}</h2>
+                <h2 >Courses Taking {{term}}</h2>
                 {% if taking == 0 %}
                     <table width = 700px >
                         <tr>
@@ -62,7 +65,7 @@
                             <td>{{r.insName}}</td>
                             <td>{{r.day}}</td>
                             <td>{{r.time}}</td>
-                            <td><a href="">Write a review</a></td>
+                            <td>{% if Cperiod == 4 %} <a href="{% url 'student_review' r.section %}">Write a review</a> {% endif %}</td>
                         </tr>
                         {% endfor %}
                     </table>
@@ -70,7 +73,7 @@
                 {% endif %}
                 </center>
             </div>
-            <br/>
+            <br/><br/>
             <div id = current-information>
                 <table width=400px>
                     <tr>
@@ -86,6 +89,22 @@
                         <td>{{userinfo.GPA}}</td>
                     </tr>
                     <tr>
+                        <td>Current Period:</td>
+                        <td>
+                            {% if Cperiod == 4 %}
+                                Class Running Period
+                            {% elif Cperiod == 5 %}
+                                Grading Period
+                            {% elif Cperiod == 2 %}
+                                Course Registration Period
+                            {% elif Cperiod == 3 %}
+                                Special Registration Period
+                            {% else %}
+                                {{Cperiod}}
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
                         <td>Current Status:</td>
                         <td>
                             {% if userinfo.curStatus == 1 %}
@@ -93,10 +112,10 @@
                             {% elif userinfo.curStatus == 2 %}
                                 Graduate
                             {% else %}
-                                Suspended <a href="">Pay the fine</a>
+                                Suspended <a href="{% url 'student_payfine' %}">Pay fine</a>
                             {% endif %}
                         </td>
-                    </tr>
+                    </tr> 
                 </table>
             </div>
         </div>    
@@ -104,20 +123,45 @@
         <div id = "notification">
             <center>
                 <h2>Notification</h2>
-                <table width= 430px border = '1'>
+                <table width= 470px border = '1'>
                     <tr>
-                        <th></th>
-                        <th>List</th>
+                        <th>Status</th>
+                        <th>Sender</th>
+                        <th>Title</th>
                         <th>Date</th>
                     </tr>
-                    <tr>
-                        <td>1</td>
-                        <td><a href="">Example: Grade posted/recieved a warming</a></td>
-                        <td>mm/dd/yy</td>
-                    </tr>
-
+                    {% if notification == 0 %}
+                    <tr><td>NULL</td><td>NULL</td><td>NULL</td><td>NULL</td></tr>
+                    {% else %}
+                        {% for i in notification %}
+                        <tr>
+                            {% if i.status == 'UNREAD' %}
+                                <td id = "UNREAD">{{i.status}}</td>
+                            {% else %}
+                                <td>{{i.status}}</td>
+                            {% endif %}
+                            <td>{{i.sender}}</td>
+                            <td><a href="{% url 'student_notification' i.nid %}">{{i.title}}</a></td>
+                            <td>{{i.time}}</td>
+                        </tr>
+                        {% endfor %}
+                    {% endif %}
                 </table>
+
+                {% if notification != 0 %}
                 <br/>
+                <a href ="{% url 'student_index' pIndex|add:-1 %}">Previous Page</a>
+                {% for p in pagelist %}
+                    {% if pIndex == p %}
+                    &nbsp;<a href=" {% url 'student_index' p %}" style = "color:steelblue;">{{p}}</a>  &nbsp;
+                    {% else %} 
+                    &nbsp;<a href=" {% url 'student_index'  p %}">{{p}}</a>  &nbsp;
+                    {% endif %}
+                {% endfor %}   
+            
+                <a href ="{% url 'student_index' pIndex|add:1 %}">Next Page</a>
+
+                {% endif %}
             </center>
         </div>   
     </div>

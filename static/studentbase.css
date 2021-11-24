@@ -15,6 +15,14 @@ a:active{text-decoration: none;color:black}
     margin-left: auto;
 }
 
+#logo {
+    font-size: 40px; 
+    font-style: italic;
+    color:rgb(32, 145, 211);
+    text-shadow: rgb(79, 158, 211);
+    font-weight:bold
+}
+
 #userlogout{
     position: absolute;
     right: 50px;

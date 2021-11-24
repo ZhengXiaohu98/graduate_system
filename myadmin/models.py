@@ -84,6 +84,7 @@ class insApplication(models.Model):
 class course(models.Model):
     cid = models.IntegerField(primary_key=True)
     className = models.CharField(max_length=36)
+    pre_req = models.IntegerField(default = 0)
     department = models.CharField(max_length=36)
 
     class Meta:
@@ -119,6 +120,18 @@ class stuCourse(models.Model):
 
     class Meta:
         db_table = "stucourse"
+
+# wait list model
+class waitList(models.Model):
+    sid= models.IntegerField(default = 0)
+    year = models.IntegerField(default=0)
+    semester = models.CharField(max_length=36)
+    sectionNum = models.IntegerField(default = 0)
+    position = models.IntegerField(default = 0)
+
+    class Meta:
+        db_table = "waitList"
+
 #complain table model
 class complainmsg(models.Model):
     sendType = models.CharField(max_length = 36)
@@ -146,19 +159,20 @@ class period(models.Model):
         
 #Student Message Model
 class stuMsg(models.Model):
-    id = models.IntegerField(primary_key=True)
+    nid = models.IntegerField(primary_key=True)
     receiverID = models.IntegerField(default=0)
     sender = models.CharField(max_length=20)
     title = models.CharField(max_length=20)
     content = models.CharField(max_length=256)
     getTime = models.DateTimeField(default=datetime.now)
+    status = models.IntegerField(default = 0)
     
     class Meta:
         db_table = "stuMsg"
 
 #Instructor Message Model
 class insMsg(models.Model):
-    id = models.IntegerField(primary_key=True)
+    nid = models.IntegerField(primary_key=True)
     receiverID = models.IntegerField(default=0)
     title = models.CharField(max_length=20)
     content = models.CharField(max_length=256)
@@ -166,3 +180,26 @@ class insMsg(models.Model):
     
     class Meta:
         db_table = "insMsg"
+
+#Studeng review table
+class review(models.Model):
+    rid = models.IntegerField(primary_key=True)
+    sid = models.IntegerField(default = 0)
+    sectionNum = models.IntegerField(default=0)
+    rating = models.IntegerField(default=0)
+    content = models.CharField(max_length=256)
+    createdTime = models.DateTimeField(default=datetime.now)
+    
+    class Meta:
+        db_table = "review"
+
+class payFine(models.Model):
+    fid = models.IntegerField(primary_key=True)
+    sid = models.IntegerField(default = 0)
+    amount = models.FloatField(default = 100.00)
+    paid = models.FloatField(default = 0)
+    status = models.IntegerField(default = 0)
+    updateTime = models.DateTimeField(default = datetime.now)
+
+    class Meta:
+        db_table = "payFine"

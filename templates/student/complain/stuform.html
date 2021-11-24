@@ -19,7 +19,7 @@
 
 {% block url%}
         <ul class = "contents-list">
-            <li><a href="{% url 'student_index' %}">Current Information</a></li>
+            <li><a href="{% url 'student_index' 1 %}">Current Information</a></li>
             <li><a href="{% url 'student_CourseManage' %}">Course Management</a></li>
             <li><a href="{% url 'student_SearchCourse' 0 %}">Search Course</a></li>
             <li><a href="{% url 'student_AcademicRecord' %}">Academic Record</a></li>
@@ -102,17 +102,19 @@
                     <br/><h4>{{historyinfo}}</h4><br/>
                 {% endif %}
                 
-                <br/>
-                <a href ="{% url 'complain_student' 0 0 0 pIndex|add:-1 %}">Previous Page</a>
-                {% for p in pagelist %}
-                    {% if pIndex == p %}
-                    &nbsp;<a href=" {% url 'complain_student' 0 0 0 p %}" style = "color:steelblue;">{{p}}</a>  &nbsp;
-                    {% else %} 
-                    &nbsp;<a href=" {% url 'complain_student' 0 0 0 p %}">{{p}}</a>  &nbsp;
-                    {% endif %}
-                {% endfor %}   
-            
-                <a href ="{% url 'complain_student' 0 0 0 pIndex|add:1 %}">Next Page</a>
+                {% if notify != 0 %}
+                    <br/>
+                    <a href ="{% url 'complain_student' 0 0 0 pIndex|add:-1 %}">Previous Page</a>
+                    {% for p in pagelist %}
+                        {% if pIndex == p %}
+                        &nbsp;<a href=" {% url 'complain_student' 0 0 0 p %}" style = "color:steelblue;">{{p}}</a>  &nbsp;
+                        {% else %} 
+                        &nbsp;<a href=" {% url 'complain_student' 0 0 0 p %}">{{p}}</a>  &nbsp;
+                        {% endif %}
+                    {% endfor %}   
+                
+                    <a href ="{% url 'complain_student' 0 0 0 pIndex|add:1 %}">Next Page</a>
+                {% endif %}
 
             </center>
         </div>
