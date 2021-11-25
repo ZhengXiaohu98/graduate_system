@@ -3,16 +3,12 @@ from student.views import index, setting, complain, AcademicRecord, SearchCourse
 
 urlpatterns = [
     #student index page
-<<<<<<< HEAD
     path('<int:pIndex>', index.index, name = 'student_index'),
     path('notification/<int:MsgId>', index.notification, name = 'student_notification'),
     path('review/<int:section>', index.reviewForm, name = 'student_review'),
     path('review/submit/<int:section>', index.reviewUpdate, name = 'student_review_submit'),
     path('payfine', index.pay, name = 'student_payfine'),
     path('payfine/submit',index.submitpay, name = 'student_payfine_submit'),
-=======
-    path('', index.index, name = 'student_index'),
->>>>>>> b5990fff3592c6072827bd6e368b8735286a81de
 
     #login pages url
     path('login', index.login, name = 'student_login'),
@@ -25,7 +21,6 @@ urlpatterns = [
     path('application/check', index.checkApplication, name='student_application_check'),
     path('application/docheck', index.docheckApplication, name='student_application_docheck'),
 
-<<<<<<< HEAD
     #student course management url
     path('CourseManage', courseManage.index, name = 'student_CourseManage'),
     path('CourseManage/confirm/<int:section>', courseManage.confirmdrop, name = 'CourseManage_confirm'),
@@ -37,14 +32,6 @@ urlpatterns = [
     path('SearchCourse/courses/?P<res>', SearchCourses.courses, name='SearchCourse_courses'),
     path('SearchCourse/courses/info/<int:section>?P<search>', SearchCourses.addview, name='SearchCourse_courses_info'),
     path('SearchCourse/courses/add/<int:section>?P<search>', SearchCourses.add, name='SearchCourse_courses_add'),
-=======
-    path('CourseManage', courseManage.index, name = 'student_CourseManage'),
-
-    #student current information url
-    path('SearchCourse/<int:check>', SearchCourses.search, name = 'student_SearchCourse'),
-    path('SearchCourse/modify/?P<search>', SearchCourses.searchmodify, name='SearchCourse_modify'),
-    path('SearchCourse/courses', SearchCourses.courses, name='SearchCourse_courses'),
->>>>>>> b5990fff3592c6072827bd6e368b8735286a81de
 
     #student Academic Record url
     path('AcademicRecord', AcademicRecord.index, name = 'student_AcademicRecord'),

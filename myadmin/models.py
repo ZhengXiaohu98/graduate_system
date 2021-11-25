@@ -84,6 +84,7 @@ class insApplication(models.Model):
 class course(models.Model):
     cid = models.IntegerField(primary_key=True)
     className = models.CharField(max_length=36)
+    pre_req = models.IntegerField(default = 0)
     department = models.CharField(max_length=36)
 
     class Meta:
@@ -159,7 +160,6 @@ class period(models.Model):
 #Student Message Model
 class stuMsg(models.Model):
     nid = models.IntegerField(primary_key=True)
-    id = models.IntegerField(primary_key=True)
     receiverID = models.IntegerField(default=0)
     sender = models.CharField(max_length=20)
     title = models.CharField(max_length=20)
@@ -173,7 +173,6 @@ class stuMsg(models.Model):
 #Instructor Message Model
 class insMsg(models.Model):
     nid = models.IntegerField(primary_key=True)
-    id = models.IntegerField(primary_key=True)
     receiverID = models.IntegerField(default=0)
     title = models.CharField(max_length=20)
     content = models.CharField(max_length=256)
@@ -204,5 +203,3 @@ class payFine(models.Model):
 
     class Meta:
         db_table = "payFine"
-        db_table = "insMsg"
-

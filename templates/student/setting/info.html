@@ -26,11 +26,7 @@
             <h3 >{{info}}</h3>
 
             {% if status == 1 %}
-<<<<<<< HEAD
                 <a href="{% url 'student_index' 1 %}">Back to Main page</a>
-=======
-                <a href="{% url 'student_index' %}">Back to Main page</a>
->>>>>>> b5990fff3592c6072827bd6e368b8735286a81de
             {% else %}
                     <a href="{% url view %}"> {% if view == "Student Information" %}Back to Student Information Page 
                                                  {% else %}Back to Password Page {% endif %}</a>
