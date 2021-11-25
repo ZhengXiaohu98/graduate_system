@@ -5,7 +5,6 @@
 {% block style%}
     <style>
         #record {float:left; margin-right: 10px;}
-<<<<<<< HEAD
         th {background-color:rgb(184, 228, 252)}
         #notification{float:left; margin-left: 10px; }
         #notification table th{ background-color: rgb(115, 195, 238);}
@@ -13,12 +12,6 @@
         #main-page a{color: steelblue;}
         #UNREAD {color:red}
         
-=======
-        #notification{float:left; margin-left: 10px; }
-        th {background-color:rgb(184, 228, 252)}
-        h3 {color: red;}
-        #main-page a{color: steelblue;}
->>>>>>> b5990fff3592c6072827bd6e368b8735286a81de
     </style>
 {% endblock %}
 
@@ -28,11 +21,7 @@
 
 {% block url%}
         <ul class = "contents-list">
-<<<<<<< HEAD
             <li class = "on"><a href="{% url 'student_index' 1 %}">Current Information</a></li>
-=======
-            <li class = "on"><a href="{% url 'student_index' %}">Current Information</a></li>
->>>>>>> b5990fff3592c6072827bd6e368b8735286a81de
             <li><a href="{% url 'student_CourseManage' %}">Course Management</a></li>
             <li><a href="{% url 'student_SearchCourse' 0 %}">Search Course</a></li>
             <li><a href="{% url 'student_AcademicRecord' %}">Academic Record</a></li>
@@ -48,11 +37,7 @@
         <div id = "record">
             <div  {% if userinfo.curStatus == 0 %} visiability: hideen {% endif %}>
                 <center>
-<<<<<<< HEAD
                 <h2 >Courses Taking {{term}}</h2>
-=======
-                <h2 >courses Taking {{term}}</h2>
->>>>>>> b5990fff3592c6072827bd6e368b8735286a81de
                 {% if taking == 0 %}
                     <table width = 700px >
                         <tr>
@@ -80,27 +65,15 @@
                             <td>{{r.insName}}</td>
                             <td>{{r.day}}</td>
                             <td>{{r.time}}</td>
-<<<<<<< HEAD
                             <td>{% if Cperiod == 4 %} <a href="{% url 'student_review' r.section %}">Write a review</a> {% endif %}</td>
-=======
-                            <td><a href="">Write a review</a></td>
->>>>>>> b5990fff3592c6072827bd6e368b8735286a81de
                         </tr>
                         {% endfor %}
                     </table>
                     <br/>
-<<<<<<< HEAD
                 {% endif %}
                 </center>
             </div>
             <br/><br/>
-=======
-                        未完成: 需要按period来显示写review的操作
-                {% endif %}
-                </center>
-            </div>
-            <br/>
->>>>>>> b5990fff3592c6072827bd6e368b8735286a81de
             <div id = current-information>
                 <table width=400px>
                     <tr>
@@ -116,7 +89,6 @@
                         <td>{{userinfo.GPA}}</td>
                     </tr>
                     <tr>
-<<<<<<< HEAD
                         <td>Current Period:</td>
                         <td>
                             {% if Cperiod == 4 %}
@@ -133,8 +105,6 @@
                         </td>
                     </tr>
                     <tr>
-=======
->>>>>>> b5990fff3592c6072827bd6e368b8735286a81de
                         <td>Current Status:</td>
                         <td>
                             {% if userinfo.curStatus == 1 %}
@@ -142,17 +112,10 @@
                             {% elif userinfo.curStatus == 2 %}
                                 Graduate
                             {% else %}
-<<<<<<< HEAD
                                 Suspended <a href="{% url 'student_payfine' %}">Pay fine</a>
                             {% endif %}
                         </td>
                     </tr> 
-=======
-                                Suspended <a href="">Pay the fine</a>
-                            {% endif %}
-                        </td>
-                    </tr>
->>>>>>> b5990fff3592c6072827bd6e368b8735286a81de
                 </table>
             </div>
         </div>    
@@ -160,7 +123,6 @@
         <div id = "notification">
             <center>
                 <h2>Notification</h2>
-<<<<<<< HEAD
                 <table width= 470px border = '1'>
                     <tr>
                         <th>Status</th>
@@ -200,23 +162,6 @@
                 <a href ="{% url 'student_index' pIndex|add:1 %}">Next Page</a>
 
                 {% endif %}
-=======
-                <table width= 430px border = '1'>
-                    <tr>
-                        <th></th>
-                        <th>List</th>
-                        <th>Date</th>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td><a href="">例：Grade posted/recieved a warming</a></td>
-                        <td>mm/dd/yy</td>
-                    </tr>
-
-                </table>
-                <br/>
-                未完成!
->>>>>>> b5990fff3592c6072827bd6e368b8735286a81de
             </center>
         </div>   
     </div>

@@ -1,13 +1,8 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
-<<<<<<< HEAD
 from myadmin.models import student, stuCourse, schedules, instructor, stuMsg
 from django.http import HttpResponse
 from datetime import datetime
-=======
-from myadmin.models import student, stuCourse, schedules, instructor
-from django.http import HttpResponse
->>>>>>> b5990fff3592c6072827bd6e368b8735286a81de
 
 def index(request):
     id = request.session['studentuser']['sid']
@@ -60,7 +55,6 @@ def submitGradate(request):
     uinfo= student.objects.get(sid = id)
     uinfo.curStatus = 2
     uinfo.save()
-<<<<<<< HEAD
 
     notification = stuMsg()
     notification.receiverID = id
@@ -70,8 +64,6 @@ def submitGradate(request):
     notification.content = "You applied for graduated at " + str(datetime.now().strftime('%Y-%m-%d %H:%M')) +". You are now graduated student!"
     notification.save()
 
-=======
->>>>>>> b5990fff3592c6072827bd6e368b8735286a81de
     context = {"info": "Apply for Graduation Successful!", "userinfo":uinfo}
     return render(request,"student/AcademicRecord/info.html", context)
 

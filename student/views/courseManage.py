@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 from django.shortcuts import render, redirect, HttpResponse
 from django.urls import reverse
 from myadmin.models import student, stuCourse, schedules, instructor, period, stuMsg, payFine
@@ -160,12 +159,3 @@ def drop(request,section):
 
     context = {"userinfo":uinfo, "info":info}
     return render(request, 'student/CourseManagement/info.html',context)
-=======
-from django.shortcuts import render, redirect
-from django.urls import reverse
-from myadmin.models import student, schedules, instructor, course
-from django.http import HttpResponse
-
-def index(request):
-    pass
->>>>>>> b5990fff3592c6072827bd6e368b8735286a81de

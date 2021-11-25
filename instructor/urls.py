@@ -27,10 +27,6 @@ urlpatterns = [
     path('courselist/students/<int:sectionNum>/gradeupdate', courseList.gradeUpdate, name='grade_update'),
 
     #complain page url
-<<<<<<< HEAD
     path('complain', complain.editComplain, name='complain'),
-=======
-    path('complain/<int:pIndex>', complain.editComplain, name='complain'),
->>>>>>> b5990fff3592c6072827bd6e368b8735286a81de
     path('complain/update', complain.updateComplain, name='update_complain'),
 ]
