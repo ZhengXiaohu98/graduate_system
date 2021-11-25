@@ -43,6 +43,7 @@ def updatepwd(request):
     obj= student.objects.get(sid = id)
     oldpassword = request.POST['oldpwd']
 
+
     if(oldpassword != obj.pw):
         context = {"info" : "Incorrect password!", "status":0, "view":"student_setting_password"}
     else:
