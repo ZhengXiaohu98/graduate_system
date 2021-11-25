@@ -15,6 +15,7 @@ a:active{text-decoration: none;color:black}
     margin-left: auto;
 }
 
+<<<<<<< HEAD
 #logo {
     font-size: 40px; 
     font-style: italic;
@@ -23,6 +24,8 @@ a:active{text-decoration: none;color:black}
     font-weight:bold
 }
 
+=======
+>>>>>>> b5990fff3592c6072827bd6e368b8735286a81de
 #userlogout{
     position: absolute;
     right: 50px;

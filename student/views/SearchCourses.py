@@ -1,6 +1,10 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
+<<<<<<< HEAD
 from myadmin.models import student, schedules, instructor, course, period, stuCourse, waitList, stuMsg
+=======
+from myadmin.models import student, schedules, instructor, course
+>>>>>>> b5990fff3592c6072827bd6e368b8735286a81de
 from django.http import HttpResponse
 import pickle
 
@@ -14,7 +18,11 @@ def search(request, check):
     terms.query = pickle.loads(pickle.dumps(terms.query))
     courses = course.objects.all()
     days = schedules.objects.values_list('days').distinct()
+<<<<<<< HEAD
     days.query = pickle.loads(pickle.dumps(days.query)) 
+=======
+    days.query = pickle.loads(pickle.dumps(days.query))
+>>>>>>> b5990fff3592c6072827bd6e368b8735286a81de
     times = schedules.objects.values_list('start_time').distinct()
     times.query = pickle.loads(pickle.dumps(times.query))
     
@@ -66,6 +74,7 @@ def searchmodify(request, search):
     return render(request, 'student/SearchCourse/searchmodify.html',context)
 
 
+<<<<<<< HEAD
 def courses(request, res):
     id = request.session['studentuser']['sid']
     uinfo = student.objects.get(sid = id)
@@ -88,6 +97,17 @@ def courses(request, res):
         time = x[3]
         status = x[4]
         search = res
+=======
+def courses(request):
+    id = request.session['studentuser']['sid']
+    uinfo = student.objects.get(sid = id)
+    term = request.POST['term']
+    classname = request.POST['course']
+    day = request.POST['day']
+    time = request.POST['time']
+    status = request.POST['status']
+    search = term + "," + classname + "," + day + "," + time + ","+ status
+>>>>>>> b5990fff3592c6072827bd6e368b8735286a81de
 
     # search for the course
     if term == 'Choose Term' and classname == 'Choose Course' and day == "Choose Day" and time == "Choose Time" and status == "Choose Status":
@@ -119,11 +139,16 @@ def courses(request, res):
         context = {"userinfo": uinfo, "info":info, "search":search}
         return render(request, 'student/SearchCourse/info.html',context)
 
+<<<<<<< HEAD
+=======
+    print(schedulesObj)
+>>>>>>> b5990fff3592c6072827bd6e368b8735286a81de
     data=[]
     for obj in schedulesObj:
         insObj = instructor.objects.get(iid = obj.iid)
         courseObj = course.objects.get(className = obj.className)
 
+<<<<<<< HEAD
         Cterm = str(obj.year) +' '+ str(obj.semester)
         Cperiod = period.objects.get(term = Cterm)
         
@@ -315,3 +340,13 @@ def add(request, section, search):
 
 
 
+=======
+        print(courseObj) 
+        rlist = {"year":obj.year, "semester":obj.semester,"cid":courseObj.cid, "className":obj.className, 
+            "section":obj.sectionNum,"insName":insObj.insName, "day":obj.days, "time":obj.start_time,"status":obj.status}
+
+        data.append(rlist)
+
+    context = {"userinfo":uinfo,"course": data, "search":search}
+    return render(request, 'student/SearchCourse/courseslist.html',context)
+>>>>>>> b5990fff3592c6072827bd6e368b8735286a81de
