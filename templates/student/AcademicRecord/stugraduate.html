@@ -4,9 +4,13 @@
 
 {% block style%}
     <style>
-       h4 {color: red;}
-       td {padding: 10px; line-height: 20px; font-size: 15px;}
-       #graduate-info a {color:steelblue}
+        h4 {color: red;}
+        td {padding: 10px; line-height: 20px; font-size: 15px;}
+        .AcademicRecord a {color:steelblue}
+
+        #apply {width:110px ; background-color:white; height: 32px; color:rgb(0, 124, 207);
+             border-radius: 8px; border-color: rgb(55, 167, 241); border-width: 2px; cursor: pointer;}
+        #apply:hover{background-color: rgb(243, 249, 253);}
     </style>
     </style>
 {% endblock %}
@@ -32,34 +36,31 @@
         <center>
             <h2> Apply Graduate</h2>
             <h4>!! All student must complete 8 classes in order to apply graduation !! </h4>
-            <table width= 20%>
-                <tr>
-                    <td>Total Class Taken:</td>
-                    <td>{{taken}}</td>
-                </tr>
-                <tr>
-                    <td>Current Class Taking:</td>
-                    <td>{{current}}</td>
-                </tr>
-                <tr>
-                    <td>Completed Classes: </td>
-                    <td>{{passed}}</td>
-                </tr>
-            </table>
-            <br/>
-
-            <div id = "graduate-info">
-                {% if userinfo.curStatus == 2 %}
-                    <h3>You already Graduated!!</h3>
-                {% elif passed == 8 %}
-                    You are eligible to apply for graduation!
-                    <a href="{% url 'AcademicRecord_graduate_apply' %}"> Apply graduation</a>
-                {% else %}
-                    You are not eligible to apply for graduation! You need to complete {{require}} more courses. <br/><br/>
+            <form action = "{% url 'AcademicRecord_graduate_apply' %}" method = "post">
+                {% csrf_token %}
+                <table width= 20%>
+                    <tr>
+                        <td>Total Class Taken:</td>
+                        <td>{{taken}}</td>
+                    </tr>
+                    <tr>
+                        <td>Current Class Taking:</td>
+                        <td>{{current}}</td>
+                    </tr>
+                    <tr>
+                        <td>Completed Classes: </td>
+                        <td>{{passed}}</td>
+                    </tr>
+                </table>
+                <br/><br/>
                     
-                    <a href ="{% url 'AcademicRecord_history' %}" > View Course History</a></li>
+                {% if userinfo.curStatus == 2 %}
+                    <h3>You already Graduated!!</h3><br/><br>
+                {% else %}
+                    <td><input type="submit" id = "apply" value = "Apply Graduate"/> </td><br/><br/>
                 {% endif %}
-            </div>
+            </form>    
+            <a href ="{% url 'AcademicRecord_history' %}" > View Course History</a></li>
         </center>
     </div>
 

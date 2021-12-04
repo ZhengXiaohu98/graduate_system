@@ -10,6 +10,9 @@ urlpatterns = [
     path('payfine', index.pay, name = 'student_payfine'),
     path('payfine/submit',index.submitpay, name = 'student_payfine_submit'),
 
+    #new student tutorial
+    path('tutorial',index.tutorial, name = 'student_tutorial'),
+    
     #login pages url
     path('login', index.login, name = 'student_login'),
     path('dologin', index.dologin, name = 'student_dologin'),

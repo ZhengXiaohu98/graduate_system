@@ -4,13 +4,25 @@
 
 {% block style%}
     <style>
-        th {background-color:rgb(184, 228, 252)}
-        #addinginfo {float: left;margin-right: 5px;}
-        #addedCourse {float: left;}
         #addinginfo a {color:steelblue;}
         #addedCourse a {color:steelblue;}
-        #course td{padding: 10px; line-height: 20px; font-size: 15px;}
         h4 {color: rgb(22, 69, 155);}
+
+        #tableborder{width:600px ;border-radius:5px; box-shadow: 0 0px 10px 0px rgb(0 0 0 / 15%); overflow: hidden;}
+        #tableborder table {width:100%;  border-collapse: collapse; }
+        #tableborder tr:nth-child(even) {background-color: #f1faff;}
+        #tableborder td {height: 40px; text-align:center;}
+        #tableborder th {height:50px; color: white;background-color: rgb(79, 163, 241);}
+        #operation a {color:rgb(7, 92, 161); }
+
+        #addinginfo {float: left;margin-right: 5px;}
+        #addedCourse {float: left; margin-left: 30px;}
+        #course td{padding: 10px; line-height: 20px; font-size: 15px;}
+        
+
+        #AddCourse {width:100px ; background-color:white; height: 32px; color:rgb(0, 124, 207);
+             border-radius: 8px; border-color: rgb(55, 167, 241); border-width: 2px; cursor: pointer;}
+        #AddCourse:hover{background-color: rgb(243, 249, 253);}
     </style>
 {% endblock %}
 
@@ -50,12 +62,10 @@
                         {% else %}
                             <td>None</td>
                         {% endif %}</tr>
-                        <tr><td>Current enroll:</td><td>{{addcourse.current_enroll}}/{{addcourse.max_limit}}</td></tr>
-                        <tr><td></td><td></td></tr>
-                        <tr><td></td><td><input type="submit" value = "ADD Course"/></td></tr>
-                        </tr>          
-                    </table><br/>
-                </form>
+                        <tr><td>Current enroll:</td><td>{{addcourse.current_enroll}}/{{addcourse.max_limit}}</td></tr>       
+                    </table><br/><br/>
+                    <input id = "AddCourse" type="submit" value = "ADD Course"/></td></tr>
+                </form><br/><br/>
                 <a href="{% url 'student_SearchCourse' 0  %}">New Search</a> | 
                 <a href="{% url 'SearchCourse_modify' search %}"> Modify Search</a> |
                 <a href="{% url 'SearchCourse_courses' search %}"> Back to Search Result</a>
@@ -65,7 +75,8 @@
             <center>
                 <h2>Course Added for {{year}} {{semester}}</h2>
                 <br/>
-                <table width= 100% border = '1'>
+                <div id = "tableborder">
+                <table >
                     <tr>
                         <th>Course ID</th>
                         <th>Class Name</th>
@@ -84,11 +95,11 @@
                             <td>{{r.insName}}</td>
                             <td>{{r.day}}</td>
                             <td>{{r.time}}</td>
-                            <td><a href = "">Drop</a></td>
+                            <td id = "operation"><a href = "{% url 'CourseManage_confirm' r.section %}">Drop</a></td>
                         </tr>
                         {% endfor %}
                     {% endif %}
-                </table><br/>
+                </table><br/></div>
                 {% if course == 0 %}
                     <h4 >{{info}}</h3>
                 {% endif %}
@@ -96,7 +107,8 @@
                 {% if waitlist != 0 %}
                     <h2>Course in Wait List </h2>
                     <br/>
-                    <table width= 100% border = '1'>
+                    <div id = "tableborder">
+                    <table >
                         <tr>
                             <th>Course ID</th>
                             <th>Class Name</th>
@@ -117,7 +129,7 @@
                             <td>{{r.position}}</a></td>
                         </tr>
                         {% endfor %}
-                    </table><br/>
+                    </table><br/></div>
                 {% endif %}
                 <br/>
                 <a href="{% url 'student_CourseManage' %}">Go to Course Management Page</a>

@@ -104,6 +104,7 @@ def drop(request,section):
     if (Cperiod. curPeriod == 4):
         Gcourse = stuCourse.objects.get(sid = id, sectionNum = section, curStatus = 2)
         Gcourse.grade = 'W'
+        G.curStatus = 0
         Gcourse.save()
 
         # check if student dropped all courses, => suspended student

@@ -2,13 +2,19 @@
 
 {% block title1 %}information{% endblock %}
 
+{% block style%}
+    <style>
+        .setting a{color:steelblue}
+    </style>
+{% endblock %}
+
 {% block name%}{{userinfo.stuName}}{% endblock %}
 
 {% block username%}{{userinfo.username}}{% endblock %}
 
 {% block url%}
         <ul class = "contents-list">
-            <li><a href="{% url 'student_index' %}">Current Information</a></li>
+            <li><a href="{% url 'student_index' 1 %}">Current Information</a></li>
             <li><a href="{% url 'student_CourseManage' %}">Course Management</a></li>
             <li><a href="{% url 'student_SearchCourse' 0 %}">Search Course</a></li>
             <li><a href="{% url 'student_AcademicRecord' %}">Academic Record</a></li>
@@ -23,7 +29,7 @@
         <center>
             <h2>Student Information</h2>
             <br/>
-            <h3 >{{info}}</h3>
+            <h3 >{{info}}</h3><br/><br/>
 
             {% if status == 1 %}
                 <a href="{% url 'student_index' 1 %}">Back to Main page</a>

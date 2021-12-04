@@ -10,6 +10,17 @@
         th {background-color:rgb(184, 228, 252);}
         h4 {color: red;}
         #complainform a {color:steelblue}
+
+        #tableborder{width:600px ;border-radius:5px; box-shadow: 0 0px 10px 0px rgb(0 0 0 / 15%); overflow: hidden;}
+        #tableborder table {width:100%;  border-collapse: collapse; }
+        #tableborder tr:nth-child(even) {background-color: #f1faff;}
+        #tableborder td {height: 40px; text-align:center;}
+        #tableborder th {height:50px; color: white;background-color: rgb(79, 163, 241);}
+
+        #submit {margin-left: 60px ;width:70px ; background-color:white; height: 32px; color:rgb(0, 124, 207);
+             border-radius: 8px; border-color: rgb(55, 167, 241); border-width: 2px; cursor: pointer;}
+        #submit:hover{background-color: rgb(243, 249, 253);}
+
     </style>
 {% endblock %}
 
@@ -66,7 +77,7 @@
                 {% if info != "0" %}
                     <h4>{{info}}</h4>
                 {% endif %}
-                <input type="submit" value = "Submit"/>
+                <input id = "submit" type="submit" value = "Submit"/>
             </form>
             </center>
         </div>
@@ -74,7 +85,8 @@
         <div id = "complainhistory">
             <center>
                 <h3>Complain History</h3>
-                <table width = 600px border = "1">
+                <div id = "tableborder">
+                <table >
                     <tr >
                         <th></th>
                         <th>Instructor/Student</th>
@@ -91,7 +103,7 @@
                         <td>{{i.status}}</td>
                     </tr>
                     {% endfor %}
-                </table>
+                </table></div><br/>
                 {% if check == 0 %}
                     <br/><h4>{{historyinfo}}</h4><br/>
                 {% endif %}

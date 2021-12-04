@@ -4,7 +4,12 @@
 
 {% block style%}
     <style>
-        td {padding:20px}
+        td {padding:16px}
+        h3 {color: red;}
+        #submit {margin-left: 60px ;width:70px ; background-color:white; height: 32px; color:rgb(0, 124, 207);
+             border-radius: 8px; border-color: rgb(55, 167, 241); border-width: 2px; cursor: pointer;}
+        #submit:hover{background-color: rgb(243, 249, 253);}
+        select {padding-top:3px; padding-bottom:3px; padding-left:5px ; width: 125px;}
     </style>
 {% endblock %}
 
@@ -83,8 +88,8 @@
                         </select>
                     </td>
                 </tr>
-            </table>
-            <input type="submit" value = "Search"/>
+            </table><br/><br/>
+            <input id = "submit" type="submit" value = "Search"/>
         </form>
     </div>
 
