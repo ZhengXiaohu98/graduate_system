@@ -15,9 +15,9 @@ Including another URLconf
 """
 #from django.contrib import admin
 from django.urls import path, include
-
+from graduateSystem import genralInfo
 urlpatterns = [
-    #path('admin/', admin.site.urls),
+    path('', genralInfo.generalInfo, name="general_info"),
     path('myadmin/', include('myadmin.urls')),
     path('student/', include('student.urls')),
     path('instructor/', include('instructor.urls')),

@@ -1,7 +1,7 @@
 {% extends 'instructor/base.html' %}
 
 {% block title %}
-<title>Grading Info</title>
+<title>Waitlist Info</title>
 {% endblock %}
 
 {% block name %}
@@ -9,8 +9,10 @@
 {% endblock %}
 
 {% block main_body %}
-<h1>Grading Info</h1>
+<h2>Waitlist Information message</h2>
+
 <span>{{info}}</span>
+
 <br/>
-<a href=" {% url 'stuInCourse' sectionNum %} ">Grade Another Student</a>
+<a href="{% url 'viewWaitlist' sectionNum %}">Back</a>
 {% endblock %}

@@ -1,0 +1,97 @@
+{% extends 'instructor/base.html' %}
+
+{% block title %}
+<title>Instructor Notification</title>
+{% endblock %}
+
+{% block style %}
+<style>
+    .box{width:50%;height:800px;float:left;display:inline;}
+</style>
+    
+{% endblock %}
+
+{% block name %}
+{{name}}
+{% endblock %}
+
+
+{% block main_body%}
+<div class="container">
+<div id = "notification" class = "box">
+    <center>
+        <h2>Notification</h2>
+        <table width= 600px border = '1'>
+            <tr>
+                <th>Title</th>
+                <th>Date</th>
+                <th>Content</th>
+            </tr>
+            {% if notification == 0 %}
+            <tr><td>NULL</td><td>NULL</td><td>NULL</td></tr>
+            {% else %}
+                {% for i in notification %}
+                <tr>
+                    <td>{{i.title}}</a></td>
+                    <td>{{i.time}}</td>
+                    <th>{{i.content}}</th>
+                </tr>
+                {% endfor %}
+            {% endif %}
+        </table>
+
+        {% if notification != 0 %}
+        <br/>
+        <a href ="{% url 'notification' pIndex|add:-1 %}">Previous Page</a>
+        {% for p in pagelist %}
+            {% if pIndex == p %}
+            &nbsp;<a href=" {% url 'notification' p %}" style = "color:steelblue;">{{p}}</a>  &nbsp;
+            {% else %} 
+            &nbsp;<a href=" {% url 'notification' p %}">{{p}}</a>  &nbsp;
+            {% endif %}
+        {% endfor %}   
+    
+        <a href ="{% url 'notification' pIndex|add:1 %}">Next Page</a>
+
+        {% endif %}
+    </center>
+</div>
+<div class = "box">
+    <center>
+        <h1>Send Notification</h1>
+        <form action="{% url 'notificationUpdate' %}" method = "post">
+            {% csrf_token %}
+            <table width="800">
+                <tr>
+                    <td>Student Name:</td>
+                    <td>
+                        <select name="name">
+                            <option>Choose Student Name</option>
+                            {% for r in className %}
+                                <optgroup label = {{r.label}}></optgroup>
+                                {% for stuname in studentName %}
+                                    <option>{{stuname}}</option>
+                                {% endfor %}
+                            {% endfor %}
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Title:</td>
+                    <td><input type = "text" name = "title"/></td>
+                </tr>
+                <tr>
+                    <td>Content:</td>
+                    <td>
+                        <textarea name="content" cols="20" rows="5">
+                        </textarea>
+                    </td>
+                </tr>
+                
+            </table>
+            <input type="submit" value="Send">
+        </form>
+    </center>
+</div>
+</div>
+{% endblock %}

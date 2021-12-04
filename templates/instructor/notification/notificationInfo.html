@@ -1,0 +1,21 @@
+{% extends 'instructor/base.html' %}
+
+{% block title %}
+<title>Notification Info</title>
+{% endblock %}
+
+{% block name %}
+{{name}}
+{% endblock %}
+
+
+{% block main_body%}
+<div id = "Notification" width = 100% class = "current-info">
+    <h1>Notification Center</h1>
+    <div id = "notification_detail">
+        <center>
+        {{info}}
+        </center>
+     </div>
+</div>
+{% endblock %}

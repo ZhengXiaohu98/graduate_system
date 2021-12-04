@@ -1,0 +1,37 @@
+{% extends 'instructor/base.html' %}
+
+
+{% block title %}
+<title>View Waitlist</title>
+{% endblock %}
+
+{% block name %}
+{{name}}
+{% endblock %}
+
+{% block main_body %}
+<h1>Wait List</h1>
+<h1>Section {{sectionNum}}</h1>
+    <table width= "800" border="1">
+    <tr>
+        <td>Student ID</td>
+        <td>Student</td>
+        <td>Year</td>
+        <td>Semester</td>
+        <td>Section Number</td>
+        <td>Position</td>
+        <td>Action</td>
+    </tr>
+    {% for w in waitlist %}
+        <tr>
+            <td>{{ w.sid}}</td>
+            <td>{{ w.stuName }}</td>
+            <td>{{ w.year}}</td>
+            <td>{{ w.semester }}</td>
+            <td>{{ w.sectionNum }}</td>
+            <td>{{ w.position }}</td>
+            <td><a href="{% url 'waitlistUpdate' w.sid %}">Add Student to Section {{w.sectionNum}}</a> </td>
+        </tr>
+    {% endfor %}
+    </table>
+{% endblock %}
