@@ -12,8 +12,6 @@ def index(request, pIndex):
 
     # get the current term
     currentTerm = period.objects.get(curStatus = 2)
-    print(currentTerm.curPeriod)
-
 
     # get the notification
     notification = stuMsg.objects.filter(receiverID = id).order_by('getTime').reverse()
@@ -193,6 +191,8 @@ def dologin(request):
             context = {"msg" : "Incorrect password!"}
         else:
             request.session['studentuser'] = obj.toDict()
+            if(pw == "123456"):
+                return redirect(reverse('student_tutorial'))
             return redirect(reverse('student_index', args = (1,)))
     except Exception as err:
         context = {"msg" : "Student Not Found!"}
@@ -236,3 +236,11 @@ def docheckApplication(request):
     except:
         return render(request, 'student/stu_application_check.html', {'info':'No application found!'})
     return render(request, 'student/stu_application_status.html', {'stuApp':obj})
+
+def tutorial(request):
+    id = request.session['studentuser']['sid']
+    uinfo = student.objects.get(sid = id)
+
+    context = {"userinfo":uinfo }
+    return render(request, 'student/setting/tutorial.html',context)
+    

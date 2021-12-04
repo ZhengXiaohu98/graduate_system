@@ -4,11 +4,23 @@
 
 {% block style%}
     <style>
+        #tableborder{width:500px ;border-radius:5px; box-shadow: 0 0px 10px 0px rgb(0 0 0 / 15%); overflow: hidden;}
+        #tableborder table {width:100%;  border-collapse: collapse; }
+        #tableborder tr:nth-child(even) {background-color: #f1faff;}
+        #tableborder td {height: 40px; text-align:center;}
+        #tableborder th {height:50px; color: white;background-color: rgb(79, 163, 241);}
+        #operation a {color:rgb(7, 92, 161); }
+        
         #review a{color: steelblue;float: right;}
         #review-form td{padding: 20px; line-height: 20px; font-size: 15px;}
         #review-form {float: left;margin-right:100px}
         #history {float: left;}
-        #history th {background-color: skyblue;}
+
+        #submit {width:110px ; background-color:white; height: 32px; color:rgb(0, 124, 207);
+             border-radius: 8px; border-color: rgb(55, 167, 241); border-width: 2px; cursor: pointer;}
+        #submit:hover{background-color: rgb(243, 249, 253);}
+
+        
 
     </style>
 {% endblock %}
@@ -70,7 +82,7 @@
                     </tr>
                     <tr>
                         <td></td>
-                        <td><input type="submit" value = "Submit Review"/> </td>
+                        <td><input id = "submit" type="submit" value = "Submit Review"/> </td>
                     </tr>
                 </table><br/>
             </form>
@@ -81,7 +93,8 @@
          <div id = "history">
             <center>
                 <br/><h2>Review Submitted</h2> <br/>
-                <table width= 100% border = '1'>
+                <div id ="tableborder">
+                <table >
                     <tr>
                         <th>Term</th>
                         <th>Class Name</th>
@@ -99,7 +112,7 @@
                         <td>{{i.Date}}</td>
                     </tr>
                     {% endfor %}
-                </table>
+                </table></div>
             </center>
         </div>
         {% endif %}   

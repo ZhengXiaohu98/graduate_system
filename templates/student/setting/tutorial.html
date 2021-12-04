@@ -1,0 +1,108 @@
+{% extends 'student/base.html' %}
+
+{% block title1 %}Main Page{% endblock %}
+
+{% block style%}
+    <style>
+        #important {color: red;}
+        #important a:link{text-decoration: underline;}
+        #important a{color:red;}
+        #important a:hover{color:steelblue;}
+
+        #head{border-top: 2px solid #f5f5f5;padding-top: 10px;}
+        
+        
+    </style>
+{% endblock %}
+
+{% block name%}{{userinfo.stuName}}{% endblock %}
+
+{% block username%}{{userinfo.username}}{% endblock %}
+
+{% block url%}
+        <ul class = "contents-list">
+            <li><a href="{% url 'student_index' 1 %}">Current Information</a></li>
+            <li><a href="{% url 'student_CourseManage' %}">Course Management</a></li>
+            <li><a href="{% url 'student_SearchCourse' 0 %}">Search Course</a></li>
+            <li><a href="{% url 'student_AcademicRecord' %}">Academic Record</a></li>
+            <li><a href="{% url 'student_complain' %}">Complain</a></li>
+            <li class = "on"><a href="{% url 'student_setting' %}">Setting</a></li>
+        </ul>
+{% endblock %}
+
+
+{% block Body%}
+    <div id = "tutorial" width = 100% >
+        <h1>New Student Tutorial</h1>
+        <h3>Change Password:</h3>
+        <ul>
+            <li>Step 1: Go to Setting</li>
+            <li>Step 2: Click On "Change Password"</li>
+            <li>Step 3: Enter Your Old and New Password</li>
+            <li>Step 4: Click On Button "Update Password"</li>
+            <li id = "important">Note: New User Must <a href="{% url 'student_setting_password' %}">Change Your Password!!</a></li>
+        </ul>
+        <img src="/static/img/changepassword.png" alt="Change Password"><br/><br/>
+        
+
+        <h3 id = "head">Add Course:</h3>
+        <ul>
+            <li>Step 1: Go to Search Course</li>
+            <li>Step 2: Make your selection on Term/Course/Day/Time/Status</li>
+            <li>Step 3: Choose a course from search result</li>
+            <li>Step 4: Add the course to your schedule</li>
+            <li>Note: You can only add courses in Class Registration/Special Registration Period</li>
+        </ul>
+        <img src="/static/img/Add Course.png" alt="addcourse"><br/><br/>
+
+        <h3 id = "head">Drop Course:</h3>
+        <ul>
+            <li>Step 1: Go to Course Management</li>
+            <li>Step 2: Click on "Drop"</li>
+            <li>Step 3: Confirm your "Drop"</li>
+            <li>Note: You cannot drop course in Grading Period</li>
+        </ul>
+        <img src="/static/img/Drop Course.png" alt="addcourse"><br/><br/>
+
+        <h3 id = "head">Review Course:</h3>
+        <ul>
+            <li>Step 1: Go to Current Information</li>
+            <li>Step 2: Click on "Review"</li>
+            <li>Step 3: Rating the course</li>
+            <li>Step 4: Write your review in description</li>
+            <li>Step 5: Submit you review</li>
+            <li>Note: You cannot drop course in Grading Period</li>
+        </ul>
+        <img src="/static/img/Review Course.png" alt="addcourse"><br/><br/>
+        
+        <h3 id = "head">Complain a student/Instructor:</h3>
+        <ul>
+            <li>Step 1: Go to Complain</li>
+            <li>Step 2: Choose complain type (either Studeng or Instructor)</li>
+            <li>Step 3: Choose Name of Student/Instructor</li>
+            <li>Step 4: Write your complaining message in description</li>
+            <li>Step 5: Submit your complain</li>
+            <li>Note: You can only complain the student or instructor in your current taking course</li>
+        </ul>
+        <img src="/static/img/Complain.png" alt="addcourse"><br/><br/>
+
+        <h3 id = "head">View Course History:</h3>
+        <ul>
+            <li>Step 1: Go to Academic Record</li>
+            <li>Step 2: Click On "Course History"</li>
+        </ul>
+        <img src="/static/img/History.png" alt="addcourse"><br/><br/>
+
+        <h3 id = "head">Apply for Graduate:</h3>
+        <ul>
+            <li>Step 1: Go to Academic Record</li>
+            <li>Step 2: Click on "Apply Graduation"</li>
+            <li>Step 3: Click on button "Apply Graduate" to submit your application</li>
+            <li>Step 4: Confirm your appliation</li>
+            <li>Note: You must complete 8 classes in order to apply graduation</li>
+        </ul>
+        <img src="/static/img/ApplyGrad.png" alt="addcourse"><br/><br/>
+
+    </div>
+    
+{% endblock %}

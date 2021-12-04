@@ -5,6 +5,10 @@
 {% block style%}
     <style>
         td{padding: 10px; line-height: 20px; font-size: 15px;}
+
+        #submit {width:70px ; background-color:white; height: 32px; color:rgb(0, 124, 207);
+             border-radius: 8px; border-color: rgb(55, 167, 241); border-width: 2px; cursor: pointer;}
+        #submit:hover{background-color: rgb(243, 249, 253);}
     </style>
 {% endblock %}
 
@@ -30,7 +34,7 @@
             <h2>Student Information</h2>
             <form action = "{% url 'student_setting_information_update' %}" method = "post">
                 {% csrf_token %}
-                <table width= 60%>
+                <table width= 35%>
                     <tr>
                         <td >Student ID: </td>
                         <td>{{userinfo.sid}}</td>
@@ -63,10 +67,8 @@
                             {% endif %}
                         </td>
                     </tr>
-                    <tr>
-                        <td colspan="2" align="center"> <input type="submit" value = "Update"/> </td>
-                    </tr>
-                </table>
+                </table><br/><br/>
+                <input id = "submit" type="submit" value = "Update"/> </td>
             </form>
         </center>
     </div>

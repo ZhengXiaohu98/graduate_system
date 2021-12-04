@@ -6,6 +6,12 @@
     <style>
         #gpa {position: absolute; right: 12%;}
         th {background-color:rgb(184, 228, 252)}
+
+        #tableborder{width:85% ;border-radius:10px; box-shadow: 0 0px 40px 0px rgb(0 0 0 / 15%); overflow: hidden;}
+        table {width:100%;  border-collapse: collapse; }
+        tr:nth-child(even) {background-color: #f1faff;}
+        td {height: 40px; text-align:center;}
+        th {height:50px; color: white;background-color: rgb(79, 163, 241);}
     </style>
 {% endblock %}
 
@@ -29,7 +35,8 @@
         <h1> My Academic</h1>
         <center>
             <h2> My Course History</h2>
-            <table width =80% border = "1">
+            <div id = "tableborder">
+            <table>
                 <tr>
                     <th>Term</th>
                     <th>Course ID</th>
@@ -51,8 +58,8 @@
 
                     </tr>
                 {% endfor %}
-            </table>
-            <div id="gpa">Current GPA = {{userinfo.GPA}}</div>
+            </table></div><br/><br/>
+            <div id="gpa">Current GPA = {{userinfo.GPA}}</div><br/><br/>
         </center>
     </div>
 

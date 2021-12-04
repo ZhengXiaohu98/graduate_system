@@ -4,15 +4,23 @@
 
 {% block style%}
     <style>
-        #course-current {float:left; margin-right: 10px;}
-        #upcoming-semester {float:left; margin-right: 10px;}
-        #current-information {float: left;margin-top: 60px;}
-        #upcoming-information {float: left;margin-top: 60px;}
+        #current-semester {float:left; }
+        #current-information {float: left; margin-left:50px; margin-top: 80px;}
+        #upcoming-semester {float:left; }
+        #upcoming-information {float: left; margin-left:50px; margin-top: 80px;}
         #current-information td {width:150px;}
         #upcoming-information td {width:150px;}
         th {background-color:rgb(184, 228, 252)}
         h3 {color: red;}
-        #course-management a{color: steelblue;}
+
+        #tableborder{width:700px ;border-radius:5px; box-shadow: 0 0px 10px 0px rgb(0 0 0 / 15%); overflow: hidden;}
+        #tableborder table {width:100%;  border-collapse: collapse; }
+        #tableborder tr:nth-child(even) {background-color: #f1faff;}
+        #tableborder td {height: 40px; text-align:center;}
+        #tableborder th {height:50px; color: white;background-color: rgb(79, 163, 241);}
+        #operation a {color:rgb(7, 92, 161); }
+        
+       
     </style>
 {% endblock %}
 
@@ -42,7 +50,8 @@
                 {% if Ccourse == 0 %}
                     <table width = 700px ><tr><td align="center" ><h3>{{info1}}</h3></td></tr></table> 
                 {%else %}
-                    <table id = "course" width= 700px border = '1' >
+                <div id="tableborder">
+                    <table id = "course"  >
                         <tr>
                             <th>Course ID</th>
                             <th>Class Name</th>
@@ -61,100 +70,103 @@
                             <td>{{r.insName}}</td>
                             <td>{{r.day}}</td>
                             <td>{{r.time}}</td>
-                            <td>{% if Cperiod !=  1 or Cperiod != 5 %} <a href="{% url 'CourseManage_confirm' r.section %}">DROP</a> {% endif %}</td>
+                            <td id ="operation">{% if Cperiod !=  1 or Cperiod != 5 %} <a href="{% url 'CourseManage_confirm' r.section %}">DROP</a> {% endif %}</td>
                         </tr>
                         {% endfor %}
-                    </table><br/>{% endif %}
+                    </table><br/>{% endif %}</div>
                 </center>
             </div><br/>     
-         </div>
-         <div id = current-information>
-            <table width=400px>
-                <tr><td>Class Taking:</td><td>{{Ctake}}</td></tr>
-                <tr><td>Class Complete:</td><td>{{userinfo.class_taken}}</td> </tr>
-                <tr><td>GPA:</td><td>{{userinfo.GPA}}</td></tr>
-                <tr><td>Current Status:</td>
-                    <td>
-                        {% if userinfo.curStatus == 1 %}
-                            Nomal
-                        {% elif userinfo.curStatus == 2 %}
-                            Graduate
-                        {% else %}
-                            Suspended <a href="{% url 'student_payfine' %}">Pay fine</a>
-                        {% endif %}
-                    </td>
-                </tr>
-                <tr> <td>Current Period:</td>
-                    <td>
-                        {% if Cperiod == 4 %}
-                            Class Running Period
-                        {% elif Cperiod == 5 %}
-                            Grading Period
-                        {% elif Cperiod == 2 %}
-                            Course Registration Period
-                        {% elif Cperiod == 3 %}
-                            Special Registration Period
-                        {% else %}
-                            {{Cperiod}}
-                        {% endif %}
-                    </td>
-                </tr>
-            </table>
-        </div><br/><br/>
-        <div id ="upcoming-semester" {% if userinfo.curStatus == 0 %} visiability: hideen {% endif %}>
-            <center>
-                <h2 >Next Semester {{Nterm}}</h2>
-                {% if Ncourse == 0 %}
-                    <table width = 700px ><tr><td align="center" ><h3>{{info2}}</h3></td></tr></table> 
-                {%else %}
-                    <table id = "course" width= 700px border = '1' >
-                        <tr>
-                            <th>Course ID</th>
-                            <th>Class Name</th>
-                            <th>Section#</th>
-                            <th>Instructor</th>
-                            <th>Days</th>
-                            <th>Time</th>
-                            <th>Operation</th>
-                        </tr>
+            <div id = current-information>
+                <table width=400px>
+                    <tr><td>Class Taking:</td><td>{{Ctake}}</td></tr>
+                    <tr><td>Class Complete:</td><td>{{userinfo.class_taken}}</td> </tr>
+                    <tr><td>GPA:</td><td>{{userinfo.GPA}}</td></tr>
+                    <tr><td>Current Status:</td>
+                        <td>
+                            {% if userinfo.curStatus == 1 %}
+                                Nomal
+                            {% elif userinfo.curStatus == 2 %}
+                                Graduate
+                            {% else %}
+                                Suspended <a href="{% url 'student_payfine' %}">Pay fine</a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr> <td>Current Period:</td>
+                        <td>
+                            {% if Cperiod == 4 %}
+                                Class Running Period
+                            {% elif Cperiod == 5 %}
+                                Grading Period
+                            {% elif Cperiod == 2 %}
+                                Course Registration Period
+                            {% elif Cperiod == 3 %}
+                                Special Registration Period
+                            {% else %}
+                                {{Cperiod}}
+                            {% endif %}
+                        </td>
+                    </tr>
+                </table>
+            </div><br/><br/>
+        </div>
+        <div id = "course-upcoming">
+            <div id ="upcoming-semester" {% if userinfo.curStatus == 0 %} visiability: hideen {% endif %}>
+                <center>
+                    <h2 >Next Semester {{Nterm}}</h2>
+                    {% if Ncourse == 0 %}
+                        <table width = 700px ><tr><td align="center" ><h3>{{info2}}</h3></td></tr></table> 
+                    {%else %}
+                    <div id = "tableborder">
+                        <table id = "course"  >
+                            <tr>
+                                <th>Course ID</th>
+                                <th>Class Name</th>
+                                <th>Section#</th>
+                                <th>Instructor</th>
+                                <th>Days</th>
+                                <th>Time</th>
+                                <th>Operation</th>
+                            </tr>
 
-                        {% for r in Ncourse %}
-                        <tr>
-                            <td>{{r.cid}}</td>
-                            <td>{{r.className}}</td>
-                            <td>{{r.section}}</td>
-                            <td>{{r.insName}}</td>
-                            <td>{{r.day}}</td>
-                            <td>{{r.time}}</td>
-                            <td>{% if Nperiod !=  1 or Nperiod != 5 %} <a href="{% url 'CourseManage_confirm' r.section %}">DROP</a> {% endif %}</td>
-                        </tr>
-                        {% endfor %}
-                    </table><br/>{% endif %}
-            </center>
-        </div><br/>     
-        <div id = upcoming-information>
-            <table width=400px>
-                <tr><td>Class Added:</td><td>{{Ntake}}</td></tr>
-                <tr> <td>Current Period:</td>
-                    <td>
-                        {% if Nperiod == 4 %}
-                            Class Running Period
-                        {% elif Nperiod == 5 %}
-                            Grading Period
-                        {% elif Nperiod == 2 %}
-                            Course Registration Period
-                        {% elif Nperiod == 3 %}
-                            Special Registration Period
-                        {% elif Nperiod == 1 %}
-                            Class Set Up Period
-                        {% elif Nperiod == 0 %}
-                            Waiting
-                        {% else %}
-                            {{Nperiod}}
-                        {% endif %}
-                    </td>
-                </tr>
-            </table>
+                            {% for r in Ncourse %}
+                            <tr>
+                                <td>{{r.cid}}</td>
+                                <td>{{r.className}}</td>
+                                <td>{{r.section}}</td>
+                                <td>{{r.insName}}</td>
+                                <td>{{r.day}}</td>
+                                <td>{{r.time}}</td>
+                                <td id ="operation">{% if Nperiod !=  1 or Nperiod != 5 %} <a href="{% url 'CourseManage_confirm' r.section %}">DROP</a> {% endif %}</td>
+                            </tr>
+                            {% endfor %}
+                        </table><br/>{% endif %}</div>
+                </center>
+            </div><br/>     
+            <div id = upcoming-information>
+                <table width=400px>
+                    <tr><td>Class Added:</td><td>{{Ntake}}</td></tr>
+                    <tr> <td>Current Period:</td>
+                        <td>
+                            {% if Nperiod == 4 %}
+                                Class Running Period
+                            {% elif Nperiod == 5 %}
+                                Grading Period
+                            {% elif Nperiod == 2 %}
+                                Course Registration Period
+                            {% elif Nperiod == 3 %}
+                                Special Registration Period
+                            {% elif Nperiod == 1 %}
+                                Class Set Up Period
+                            {% elif Nperiod == 0 %}
+                                Waiting
+                            {% else %}
+                                {{Nperiod}}
+                            {% endif %}
+                        </td>
+                    </tr>
+                </table>
+            </div>
         </div>
     </div>    
     

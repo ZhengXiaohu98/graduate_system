@@ -4,14 +4,24 @@
 
 {% block style%}
     <style>
-        #record {float:left; margin-right: 10px;}
-        th {background-color:rgb(184, 228, 252)}
-        #notification{float:left; margin-left: 10px; }
-        #notification table th{ background-color: rgb(115, 195, 238);}
-        h3 {color: red;}
+        #record #tableborder {width:630px;border-radius:5px; box-shadow: 0 0px 10px 0px rgb(0 0 0 / 15%); overflow: hidden;}
+        #notification #tableborder {width:110%;border-radius:5px; box-shadow: 0 0px 40px 0px rgb(0 0 0 / 15%); overflow: hidden;}
+        #tableborder table {width:100%;  border-collapse: collapse; }
+        #tableborder td {height: 40px; text-align:center;}
+        #tableborder th {height:50px; color: white;background-color: rgb(79, 163, 241);}
+        #tableborder tr:nth-child(even) {background-color: #f2fbff;}
+        
         #main-page a{color: steelblue;}
         #UNREAD {color:red}
+        h3 {color: red;}
+
+        #record {float:left;}
+        #notification{float:left;margin-left: 30px; }
+        #operation a{color:rgb(7, 92, 161);}
+
+  
         
+
     </style>
 {% endblock %}
 
@@ -46,7 +56,8 @@
                     </table>
                     
                 {%else %}
-                    <table id = "course" width= 700px border = '1' >
+                <div id = "tableborder">
+                    <table id = "course"  >
                         <tr>
                             <th>Course ID</th>
                             <th>Class Name</th>
@@ -65,11 +76,12 @@
                             <td>{{r.insName}}</td>
                             <td>{{r.day}}</td>
                             <td>{{r.time}}</td>
-                            <td>{% if Cperiod == 4 %} <a href="{% url 'student_review' r.section %}">Write a review</a> {% endif %}</td>
+                            <td id = "operation">{% if Cperiod == 4 %} <a href="{% url 'student_review' r.section %}">Write a review</a> {% endif %}</td>
                         </tr>
                         {% endfor %}
                     </table>
                     <br/>
+                </div>
                 {% endif %}
                 </center>
             </div>
@@ -119,11 +131,11 @@
                 </table>
             </div>
         </div>    
-
         <div id = "notification">
             <center>
                 <h2>Notification</h2>
-                <table width= 470px border = '1'>
+                <div id = "tableborder">
+                <table >
                     <tr>
                         <th>Status</th>
                         <th>Sender</th>
@@ -141,13 +153,13 @@
                                 <td>{{i.status}}</td>
                             {% endif %}
                             <td>{{i.sender}}</td>
-                            <td><a href="{% url 'student_notification' i.nid %}">{{i.title}}</a></td>
+                            <td id = "operation"><a href="{% url 'student_notification' i.nid %}">{{i.title}}</a></td>
                             <td>{{i.time}}</td>
                         </tr>
                         {% endfor %}
                     {% endif %}
                 </table>
-
+                </div>
                 {% if notification != 0 %}
                 <br/>
                 <a href ="{% url 'student_index' pIndex|add:-1 %}">Previous Page</a>

@@ -203,3 +203,24 @@ class payFine(models.Model):
 
     class Meta:
         db_table = "payFine"
+
+
+class gradApplication(models.Model):
+    gid = models.IntegerField(primary_key=True)
+    sid = models.IntegerField(default = 0)
+    ctaking = models.IntegerField(default = 0)
+    cpass = models.IntegerField(default = 0)
+    curStatus = models.IntegerField(default = 0)
+    createTime = models.DateTimeField(default=datetime.now)
+
+    class Meta:
+        db_table = "gradApplication"
+
+class justification(models.Model):
+    jid = models.IntegerField(primary_key=True)
+    iid = models.IntegerField(default = 0)
+    content = models.CharField(max_length = 1000)
+    curStatus = models.IntegerField(default = 0)
+    createTime = models.DateTimeField(default=datetime.now)
+    class Meta:
+        db_table = "justification"
