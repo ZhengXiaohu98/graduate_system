@@ -1,0 +1,36 @@
+{% extends 'myadmin/base.html' %}
+{% load static %}
+
+{% block style_sheet %}
+    <link rel="stylesheet" type="text/css" href="{% static 'base.css' %}"/>
+    <!-- <link rel="stylesheet" type="text/css" href="{% static 'viewstudent.css' %}"/> -->
+{% endblock %}
+
+{% block main_body %}
+<center>
+    <h1 style = "font-size: x-large; color: #4287f5;">View Justifications</h1>
+    <table width="600" border="0" style=" border-collapse: separate;
+    border-spacing: 0 15px; 
+    background-color: rgb(221, 236, 236);
+    border-radius: 10px;
+    text-align:center">
+        <tr>
+            <td>Justification ID</td>
+            <td><input type = "text" value = "{{cur.jid}}" readonly/></td>
+        </tr>
+        <tr>
+            <td>Instructor ID:</td>
+            <td><input type = "text" value = "{{cur.iid}}" readonly/></td>
+        </tr>
+        <tr>
+            <td>Content:</td>
+            <td>
+                <textarea rows="4" cols="50" readonly>
+                    {{ cur.content }}
+                </textarea>
+            </td>
+        </tr>
+    </table>
+    </form>
+</center>
+{% endblock %}

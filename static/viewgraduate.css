@@ -1,0 +1,25 @@
+tr td{
+    text-align: center;
+    height: 30px;
+}
+
+.viewtable_id{width: 100px;}
+.viewtable_sid{width: 100px;}
+.viewtable_classtaking{width: 120px;}
+.viewtable_classtaken{width: 120px;}
+.viewtable_status{width: 120px;}
+.viewtable_action{width: 120px;}
+
+.paginator ul li{
+    list-style-type: none; 
+    float: left;
+    display: block;
+    height: 30px;
+    width: 50px;
+    margin-top: 20px;
+}
+
+.actionList ul li{
+    float: left;
+    display: block;
+}

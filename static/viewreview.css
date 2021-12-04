@@ -1,0 +1,19 @@
+tr td{
+    text-align: center;
+    height: 30px;
+}
+
+.viewtable_rid{width: 100px;}
+.viewtable_sid{width: 100px;}
+.viewtable_sec{width: 100px;}
+.viewtable_rate{width: 80px;}
+.viewtable_time{width: 200px;}
+
+.paginator ul li{
+    list-style-type: none; 
+    float: left;
+    display: block;
+    height: 30px;
+    width: 50px;
+    margin-top: 20px;
+}

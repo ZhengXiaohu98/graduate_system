@@ -1,19 +1,41 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+          background-image: url("static/img/logo.png");
+        }
+    </style>
     <title>Admin Login</title>
 </head>
-<body>
+<body style="background-color:aquamarine">
     <form action="{% url 'myadmin_dologin' %}" method="POST">
+        <h1 style="text-align: center;">Cuny Zero Login System</h1>
         {% csrf_token %}
-        <h2>Admin Login</h2>
-        username:  <input type="text" name = 'username'><br/><br/>
-        password:  <input type="password" name = 'password'><br/><br/>
-        <button type="submit">Login</button><br/><br/>
-        <span style="color: red">{{ msg }}</span> 
+        <table width="300" height="200" style="border-collapse: seperate; background-color: rgb(221, 236, 236); border-radius:10px; margin-right: auto;
+        margin-left: auto; margin-top:150px;">
+            <th>
+                <td colspan="2" style="font-size: 50; font-weight:bold; color:blueviolet">Admin Login</td>
+            </th>
+            <tr>
+                <td>Username:</td>
+                <td><input type="text" name = 'username'></td>
+            </tr>
+            <tr>
+                <td>Password:</td>
+                <td><input type="password" name = 'password'></td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align:center"><button type="submit">Login</button></td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align:center"><span style="color: red">{{ msg }}</span></td>
+            </tr>
+        </table>
     </form>    
 </body>
 </html>

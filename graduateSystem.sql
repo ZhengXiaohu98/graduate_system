@@ -533,6 +533,20 @@ content VARCHAR(256),
 createdTime datetime
 );
 
+insert into review(sid, sectionNum, rating, content)
+	values(1, 1, 2, "He is a bitch"),
+    (2, 1, 2, "dumb bitch ugly"),
+    (3, 1, 2, "Dogshit!!!!"),
+    (4, 1, 2, "shit on him"),
+    (5, 1, 2, "fuck him"),
+    (6, 1, 2, "kick his ass"),
+    (7, 1, 5, "He is a kind professor"),
+    (8, 1, 2, "ugly as fuck"),
+    (9, 1, 2, "motherfuker"),
+    (10, 1, 2, "He is a bitch"),
+    (11, 1, 2, "He is a bitch"),
+    (12, 1, 2, "He is a bitch");
+
 /*Student review table*/
 drop table if exists payFine;
 
@@ -547,4 +561,43 @@ updateTime datetime
 
 insert into payFine(sid, amount, updateTime) values(5, 100.00, '2021-05-29 19:17:46');
 
+/*complainMsg table actions*/
+drop table if exists justification;
 
+create table justification(
+jid int primary key auto_increment,
+iid int,
+content varchar(1000),
+curStatus int, /* 0:pending 1:checked by registar */
+createTime datetime
+);
+
+insert into justification(iid, content, curStatus)
+	values(1, "I was sorry", 0),
+    (2, "I was sorry", 0),
+    (3, "I was sorry", 0),
+    (4, "I was sorry", 0),
+    (5, "I was sorry", 0),
+    (6, "I was sorry", 0),
+    (7, "I was sorry", 0),
+    (8, "I was sorry", 0),
+    (9, "I was sorry", 0),
+    (10, "I was sorry", 0),
+    (11, "I was sorry", 0),
+    (12, "I was sorry", 0);
+
+/*Period Table actions*/
+drop table if exists gradApplication;
+
+create table gradApplication(
+gid int primary key auto_increment,
+sid varchar(12),
+ctaking int, /* number of course is current taking */
+cpass int, /* number of course is passed */
+curStatus int default 0, /* 0:pending 1:approve, 2:reject */
+createTime datetime
+);
+
+insert into gradapplication(sid, ctaking, cpass)
+	values(1, 3, 2),
+			(2, 4, 2);

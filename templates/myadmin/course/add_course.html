@@ -8,24 +8,34 @@
 
 {% block main_body %}
 <center>
-    <h1>Manage Course</h1>
-    <hr/>
-    <h2>Add Course</h2>
+    <h1 style = "font-size: x-large; color: #4287f5;">Manage Course</h1>
     <form action="{% url 'course_insert'  %}" method = "post">
         {% csrf_token %}
-        <table width="280" border="0">
-            <tr>
-                <td>Course id:</td>
-                <td><input type = "text" name = "cid"/></td>
-            </tr>
+        <table width="450" border="0" style=" border-collapse: separate;
+        border-spacing: 0 15px; 
+        background-color: rgb(221, 236, 236);
+        border-radius: 10px;
+        text-align:center">
             <tr>
                 <td>Class Name:</td>
                 <td><input type = "text" name = "classname"/></td>
             </tr>
             <tr>
+                <td>Year:</td>
+                <td><input type = "text" name = "year"/></td>
+            </tr>
+            <tr>
+                <td>Semester:</td>
+                <td><input type = "text" name = "semester"/></td>
+            </tr>
+            <tr>
+                <td>Department:</td>
+                <td><input type = "text" name = "department"/></td>
+            </tr>
+            <tr>
                 <td><label for="ins">Instructor Name:</label></td>
                 <td>
-                    <select name = "iid" id = "ins">
+                    <select name = "iid" id = "ins" style="border-radius: 15px;">
                         {% for i in insList %}
                             <option value = {{i.iid}}>{{i.insName}}</option>
                         {% endfor %}
@@ -52,23 +62,13 @@
             <tr>
                 <td><label for="time">Start_time:</label></td>
                 <td>
-                    <select name = "start_time" id = "time">
-                        <option value = 'a' selected><time>8:15</time></option>
-                        <option value = 'b'><time>9:00</time></option>
-                        <option value = 'c'><time>10:00</time></option>
-                        <option value = 'd'><time>11:00</time></option>
-                        <option value = 'e'><time>12:30</time></option>
-                        <option value = 'f'><time>14:00</time></option>
-                        <option value = 'g'><time>15:30</time></option>
-                        <option value = 'h'><time>18:00</time></option>
-                        <option value = 'i'><time>19:00</time></option>
-                        <option value = 'j'><time>20:00</time></option>
+                    <select name = "start_time" id = "time" style="border-radius: 15px;">
+                        <option value = 'a' selected><time>09:30 - 10:45</time></option>
+                        <option value = 'b'><time>11:00 -12:15</time></option>
+                        <option value = 'c'><time>14:00 -15:15</time></option>
+                        <option value = 'd'><time>16:00 - 17:15</time></option>
                     </select>
                 </td>
-            </tr>
-            <tr>
-                <td>Duration:</td>
-                <td><input type = "text" name = "duration"/></td>
             </tr>
             <tr>
                 <td>Max Limit:</td>

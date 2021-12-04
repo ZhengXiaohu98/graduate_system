@@ -1,0 +1,59 @@
+{% extends 'myadmin/base.html' %}
+{% load static %}
+
+{% block style_sheet %}
+    <link rel="stylesheet" type="text/css" href="{% static 'base.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'viewreview.css' %}"/>
+{% endblock %}
+
+{% block main_body %}
+    <h1 style="font-size: 30; color:#4287f5; font-weight:bold;">Course Reviews</h1>
+    <table border = "1px" style="border-collapse: collapse; background-color: rgb(221, 236, 236); border-radius:10px;">
+        <thead>
+        <tr style="height: 50px; font: size 30px; background-color:rgb(82, 13, 13)">
+            <th class = "viewtable_rid">ID</th>
+            <th class = "viewtable_sid">Student ID</th>
+            <th class = "viewtable_sec">Section Number</th>
+            <th class = "viewtable_rate">Rating</th>
+            <th class = "viewtable_time">Rated Time</th>
+            <th class = "viewtable_action">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for r in revlist %}
+        <tr>
+            <td>{{r.rid}}</td>
+            <td>{{r.sid}}</td>
+            <td>{{r.sectionNum}}</td>
+            <td>{{r.rating}}</td>
+            <td>{{r.createdTime}}</td>
+            <td style="text-align: center;">
+                <a href="{% url 'review_deal' r.rid %}" id = "action" style="display: block;
+                height:18px; 
+                width:60px; 
+                background-color:#40a0fa; 
+                font-weight: bold;
+                border-radius: 10px;
+                text-align:center;">View</a>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div class = "paginator">
+        <ul>
+            <li>
+                <a href="{% url 'review_view' pIndex|add:-1 %}">prev</a>
+            </li>
+            {% for i in pRange %}
+                <li>
+                    <a href="{% url 'review_view' i %}" {% if i == pIndex %} style="color: red;" {% endif %}>{{i}}</a>
+                </li>
+            {% endfor %}
+            <li>
+                <a href="{% url 'review_view' pIndex|add:1 %}">next</a>
+            </li>
+        </ul>
+    </div>
+    <br><br><br>
+{% endblock %}

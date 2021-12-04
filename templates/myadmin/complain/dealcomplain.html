@@ -8,13 +8,14 @@
 
 {% block main_body %}
 <center>
-    <h1>Manage Complain</h1>
-    <hr/>
-    <h2>View Current Complain Message</h2>
+    <h1 style = "font-size: x-large; color: #4287f5;">View Current Complaint Message</h1>
     <form action="{% url 'complain_update'  %}" method = "post">
         {% csrf_token %}
         <input type="hidden" name = "cpid" value="{{cur.id}}" />
-        <table width="600" border="0">
+        <table width="600" border="0" style=" border-collapse: separate;
+        border-spacing: 0 15px; 
+        background-color: rgb(221, 236, 236);
+        border-radius: 10px;">
             <tr>
                 <td>Sender Type:</td>
                 <td><input type = "text" value = "{{cur.sendType}}" readonly/></td>

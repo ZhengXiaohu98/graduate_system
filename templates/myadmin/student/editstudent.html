@@ -8,13 +8,15 @@
 
 {% block main_body %}
 <center>
-    <h1>Manage Student</h1>
-    <hr/>
-    <h2>Edit Student</h2>
+    <h1 style = "font-size: x-large; color: #4287f5;">Edit Student</h1>
     <form action="{% url 'student_update'  %}" method = "post">
         {% csrf_token %}
         <input type="hidden" name = "sid" value="{{stu.sid}}" />
-        <table width="280" border="0">
+        <table width="500" border="0" style=" border-collapse: separate;
+        border-spacing: 0 15px; 
+        background-color: rgb(221, 236, 236);
+        border-radius: 10px;
+        text-align:center">
             <tr>
                 <td>Username:</td>
                 <td><input type = "text" name = "username" value = "{{stu.username}}"/></td>

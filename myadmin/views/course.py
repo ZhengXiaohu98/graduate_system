@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.core.paginator import Paginator
 from django.db.models import Q
 
-from myadmin.models import course, instructor
+from myadmin.models import schedules, instructor, course
 
 def viewCourse(request, pIndex=1):
     courseList = course.objects.all()
@@ -35,9 +35,11 @@ def addCourse(request):
     return render(request, "myadmin/course/add_course.html", {"insList":insList})
 
 def insertCourse(request):
-    cid = request.POST["cid"]
     classname = request.POST["classname"]
+    year = request.POST["year"]
+    semester = request.POST["semester"]
     iid = request.POST["iid"]
+    dept = request.POST["department"]
     nothing_checked = True
     days = ""
     mo = request.POST.get("mo", None)
@@ -68,20 +70,35 @@ def insertCourse(request):
         return render(request, "myadmin/info.html", {"info" : "You didn't select any days for the course!"})
     days = days[1:]
     start_time = request.POST["start_time"]
-    duration = request.POST["duration"]
     max_limit = request.POST["max_limit"]
-
+    TIME = ""
+    if start_time == 'a':
+        TIME = "09:30 - 10:45"
+    if start_time == 'b':
+        TIME = "11:00 -12:15"
+    if start_time == 'c':
+        TIME = "11:00 -12:15"
+    if start_time == 'd':
+        TIME = "11:00 -12:15"
     #save the course in the database
-    newCourse = course()
-    newCourse.cid = cid
-    newCourse.className = classname
-    newCourse.iid = (int)(iid)
-    newCourse.days = days
-    newCourse.start_time = ord(start_time) - 97
-    newCourse.duration = duration
-    newCourse.max_limit = max_limit
-    newCourse.save()
+    newSc = schedules()
+    newSc.className = classname
+    newSc.iid = (int)(iid)
+    newSc.year = (int)(year)
+    newSc.semester = semester
+    newSc.days = days
+    newSc.start_time = TIME
+    newSc.max_limit = max_limit
+    newSc.status = "open"
+    newSc.rating = None
+    newSc.save()
     context = {"info" : "Successfully added Course!"}
+    
+    newCourse = course()
+    newCourse.className = classname
+    newCourse.pre_req = 0
+    newCourse.department = dept
+    newCourse.save()
     
     return render(request, "myadmin/info.html", context)
 
@@ -89,7 +106,8 @@ def editCourse(request, cid):
     try:
         insList = instructor.objects.all()
         obj = course.objects.get(cid = cid)
-        context = {"course" : obj, "insList":insList}
+        sc = schedules.objects.get(sectionNum = cid)
+        context = {"course" : obj, "insList":insList, "sc" : sc}
         return render(request, "myadmin/course/edit_course.html", context)
     except:
         context = {"info" : "Error edit Course!"}
@@ -97,8 +115,10 @@ def editCourse(request, cid):
 
 def updateCourse(request):
     obj = course.objects.get(cid = request.POST['cid'])
+    sch = schedules.objects.get(sectionNum = request.POST['cid'])
     obj.className = request.POST["classname"]
-    obj.iid = request.POST["iid"]
+    obj.department = request.POST["department"]
+    obj.save()
     nothing_checked = True
     days = ""
     mo = request.POST.get("mo", None)
@@ -128,11 +148,23 @@ def updateCourse(request):
     if nothing_checked:
         return render(request, "myadmin/info.html", {"info" : "You didn't select any days to edit for the course!"})
     days = days[1:]
-    obj.start_time = ord(request.POST["start_time"]) - ord('a')
-    obj.duration = request.POST["duration"]
-    obj.max_limit = request.POST["max_limit"]
-    obj.days = days
-    obj.save()
+    start_time = request.POST["start_time"]
+    TIME = ""
+    if start_time == 'a':
+        TIME = "09:30 - 10:45"
+    if start_time == 'b':
+        TIME = "11:00 -12:15"
+    if start_time == 'c':
+        TIME = "11:00 -12:15"
+    if start_time == 'd':
+        TIME = "11:00 -12:15"
+    sch.start_time = TIME
+    sch.max_limit = request.POST["max_limit"]
+    sch.days = days
+    sch.iid = request.POST["iid"]
+    sch.className = request.POST["classname"]
+    sch.semester = request.POST["semester"]
+    sch.save()
     context = {"info" : "Successfully Edited Course!"}
     
     return render(request, "myadmin/info.html", context)

@@ -7,11 +7,10 @@
 {% endblock %}
 
 {% block main_body %}
-    <h1 style="font-size: 20; color:aqua; font-weight:bold;">Student Management</h1>
-    <hr>
-    <table border = "1px" style="border-collapse: collapse;">
+    <h1 style="font-size: 30; color:#4287f5; font-weight:bold;">Student Management</h1>
+    <table width="1600" border = "1px" style="border-collapse: collapse; background-color: rgb(221, 236, 236); border-radius:10px;">
         <thead>
-        <tr style="height: 50px; font: size 30px;">
+        <tr style="height: 50px; font: size 30px; background-color:rgb(82, 13, 13)">
             <th class = "viewtable_id">ID</th>
             <th class = "viewtable_name">Name</th>
             <th class = "viewtable_username">username</th>
@@ -43,7 +42,7 @@
                 {% if s.curStatus == 0 %}
                     <span style="color:crimson">Suspended</span>
                 {% elif s.curStatus == 1 %}
-                    <span style="color:greenyellow">Normal</span>
+                    <span style="color:#14b858">Normal</span>
                 {% else %}
                     <span style="color:rgb(25, 131, 238)">Graduated</span>
                 {% endif %}
@@ -52,7 +51,7 @@
                 <a href="{% url 'student_edit' s.sid %}" id = "action" style="display: block;
                 height:18px; 
                 width:60px; 
-                background-color:#40a0fa; 
+                background-color:#40fafa; 
                 font-weight: bold;
                 border-radius: 10px;
                 text-align:center;">Edit</a>
@@ -68,7 +67,7 @@
             </li>
             {% for i in pRange %}
                 <li>
-                    <a href="{% url 'student_view' i %}?{{myKey|join:'&'}}" {% if i == pIndex %} style="color: red;" {% endif %}>{{i}}</a>
+                    <a href="{% url 'student_view' i %}?{{myKey|join:'&'}}" {% if i == pIndex %} style="color: rgb(248, 132, 37);" {% endif %}>{{i}}</a>
                 </li>
             {% endfor %}
             <li>
@@ -84,6 +83,6 @@
     </div>
     <br><br><br>
     <div>
-        <a href="{% url 'student_add' %}" id = "add_stu">Add a student</a>
+        <a href="{% url 'student_add' %}" id = "add_stu">Add a Student</a>
     </div>
 {% endblock %}

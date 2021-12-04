@@ -7,12 +7,13 @@
 
 {% block main_body %}
 <center>
-    <h1>Manage Student Application</h1>
-    <hr/>
-    <h2>Application information</h2>
+    <h1 style = "font-size: x-large; color: #4287f5;">Manage Student Application</h1>
     <form action="{% url 'stuapp_action'  %}" method = "post">
         {% csrf_token %}
-        <table width="280" border="0">
+        <table width="350" border="0" style=" border-collapse: separate;
+        border-spacing: 0 15px; 
+        background-color: rgb(221, 236, 236);
+        border-radius: 10px;">
             <tr>
                 <td>State ID:</td>
                 <td><input type = "text" name = "id" value = "{{appStu.stateid}}" readonly/></td>

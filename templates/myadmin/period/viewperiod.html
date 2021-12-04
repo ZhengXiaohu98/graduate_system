@@ -7,9 +7,13 @@
 {% endblock %}
 
 {% block main_body %}
-    <h1 style="font-size: 20; color:aqua; font-weight:bold;">Period Management</h1>
-    <hr>
-    <table>
+    <h1 style = "font-size: x-large; color: #4287f5; text-align:center;">Period Management</h1>
+    <br>
+    <table width="800" style=" border-collapse: separate;
+    border-spacing: 0 15px; 
+    background-color: rgb(221, 236, 236);
+    border-radius: 10px;
+    text-align:center">
         <tr>
             <td>Current Semester:</td>
             <td width = "250"><span>{{ cur.term }}</span></td>
@@ -49,6 +53,7 @@
             </td>
         </tr>
     </table>
+    <br>
         <a href="{% url 'period_next' %}" class = "action">Next Period</a>
-        <a href="{% url 'period_end' %}" class = "action">End Current Term</a>
+        <a href="{% url 'period_end' %}" class = "action" style="float: right;">End Current Term</a>
 {% endblock %}

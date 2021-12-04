@@ -23,11 +23,11 @@ a{text-decoration:none}
     width:100px; 
     background-color:#85a6ff; 
     font-weight: bold;
-    border-radius: 30px;
     float:right;
     position: relative;
 }
-#logout:hover{ background-color:rgb(151, 255, 191); color:rgb(243, 45, 111) }
+
+#logout:hover{ background-color:rgb(151, 255, 191); color:rgb(243, 45, 111);}
 
 #logout_area{
     position: absolute;
@@ -41,4 +41,3 @@ tr th{
     color: #26ffac;
     text-align: center;
 }
-

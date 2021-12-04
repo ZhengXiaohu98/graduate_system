@@ -1,6 +1,5 @@
 from django.urls import path
-from myadmin.models import period
-from myadmin.views import index, student, instructor, application, course, period, complain
+from myadmin.views import index, student, instructor, application, course, period, complain, graduate, justification, review
 
 urlpatterns = [
     #myadmin index page
@@ -51,5 +50,18 @@ urlpatterns = [
     #complain url page
     path('complain/complainview/<int:pIndex>', complain.viewComplain, name = 'complain_view'),
     path('student/complaindeal/<int:cpid>', complain.dealComplain, name = 'complain_deal'),
-    path('student/complainupdate', complain.updateComplain, name = 'complain_update')
+    path('student/complainupdate', complain.updateComplain, name = 'complain_update'),
+    
+    #Graduate url page
+    path('graduate/graduateview/<int:pIndex>', graduate.viewGraduate, name = 'graduate_view'),
+    path('graduate/graduatedealA/<int:ggid>', graduate.dealGraduateA, name = 'graduate_dealA'),
+    path('graduate/graduatedealR/<int:ggid>', graduate.dealGraduateR, name = 'graduate_dealR'),
+    
+    #Justification url page
+    path('just/justview/<int:pIndex>', justification.viewJust, name = 'justification_view'),
+    path('just/justdeal/<int:jjid>', justification.dealJust, name = 'justification_deal'),
+    
+    #review url page
+    path('review/reviewview/<int:pIndex>', review.viewReview, name = 'review_view'),
+    path('review/reviewdeal/<int:rrid>', review.dealReview, name = 'review_deal')
 ]
