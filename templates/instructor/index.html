@@ -4,6 +4,74 @@
 <title>Instructor Home</title>
 {% endblock %}
 
+{% block style %}
+<style>
+    .box{width:50%;height:800px;float:left;display:inline;}
+    .box h3{text-align: center;}
+</style>
+{% endblock %}
+
 {% block name %}
 {{name}}
+{% endblock %}
+
+{% block main_body %}
+<div class = "container">
+    <div class = "box">
+
+        <h1>Current Information</h1>
+        <h3>Class Teaching:        {{numCourses}}</h3>
+        <h3>Current Term:          {{term}}</h3>
+        <h3>Current Period:        {{curPeriod}}</h3>
+        <h3>Current Status:        {{curStatus}}</h3>
+
+        <br/><br/><br/><br/>
+        <h2>Class Currently Teaching</h2>
+        <table width= "800" border="1">
+        <tr>
+            <td>Section Number</td>
+            <td>ClassName</td>
+            <td>Year</td>
+            <td>Current Enrolled</td>
+            <td>Wait list</td>
+            <td>Status</td>
+            <td>Class Rating</td>
+            <td>Action</td>
+        </tr>
+        {% for c in course %}
+            <tr>
+                <td>{{ c.sectionNum}}</td>
+                <td>{{ c.className }}</td>
+                <td>{{ c.year }}</td>
+                <td>{{ c.current_enroll }}</td>
+                <td>{{ c.wait_list }}</td>
+                <td>{{ c.status }}</td>
+                <td>{{ c.rating }}</td>
+                <td><a href="{% url 'stuInCourse' c.sectionNum %}">View Students</a></td>
+            </tr>
+        {% endfor %}
+        </table>
+
+    </div>
+    <div class = "box">
+        <h1>Justification</h1>
+            <form action="{% url 'justification' %}" method = "post">
+                {% csrf_token %}
+                <table width="800">
+                    <span>This is for you to justifiy when you get warnings</span>
+                    <br/>
+                    <span>Or can be used as a way to leave a message to the admin</span>
+                    <tr>
+                        <td>Justification/Message:</td>
+                        <td>
+                            <textarea name="justification" cols="20" rows="5">
+                            </textarea>
+                        </td>
+                    </tr>
+                </table>
+                <input type="submit" value="Send">
+            </form>
+    </div>
+
+</div>
 {% endblock %}

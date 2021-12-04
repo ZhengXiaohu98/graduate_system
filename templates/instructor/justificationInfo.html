@@ -1,7 +1,7 @@
 {% extends 'instructor/base.html' %}
 
 {% block title %}
-<title>Grading Info</title>
+<title>Justification Info</title>
 {% endblock %}
 
 {% block name %}
@@ -9,8 +9,7 @@
 {% endblock %}
 
 {% block main_body %}
-<h1>Grading Info</h1>
+<h2>Information message</h2>
+
 <span>{{info}}</span>
-<br/>
-<a href=" {% url 'stuInCourse' sectionNum %} ">Grade Another Student</a>
 {% endblock %}

@@ -38,7 +38,7 @@
                     <td>
                         <form action="{% url 'grade_update' sectionNum %}" method="post">
                         {% csrf_token %}
-                        <select name = "grade" id = "grade" >
+                        <select name = "grade" id = "grade">
                             <option value = "None" {% if s.grade == '' %} selected {% endif %}>None</option>
                             <option value = 'A'{% if s.grade == "A" %} selected {% endif %}>A</option>
                             <option value = 'B'{% if s.grade == "B" %} selected {% endif %}>B</option>
@@ -46,10 +46,13 @@
                             <option value = 'D'{% if s.grade == "D" %} selected {% endif %}>D</option>
                             <option value = 'F'{% if s.grade == "F" %} selected {% endif %}>F</option>
                         </select>
-                        <input type = "submit" value = "Update" />
-                        <input type="hidden" name = "sid"  value="{{s.sid}}" />
                         
-                        </form>
+                        {% if curPeriod == 5 %}
+                        <input type = "submit" value = "Update" />
+                        {% endif %}
+                        (You can only update grade in Grading Period)
+                        <input type="hidden" name = "sid"  value="{{s.sid}}" />
+                    </form>
                     </td>
                 </tr>
             {% endfor %}
