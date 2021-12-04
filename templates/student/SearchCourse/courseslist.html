@@ -4,8 +4,16 @@
 
 {% block style%}
     <style>
-        th {background-color:rgb(184, 228, 252)}
-        #result a {color:steelblue;}
+        #result a{color:steelblue;}
+        #add a {color:rgb(7, 92, 161); }
+        #tableborder{width:90% ;border-radius:15px; box-shadow: 0 0px 40px 0px rgb(0 0 0 / 15%); overflow: hidden;}
+        table {width:100%;  border-collapse: collapse; }
+        tr:nth-child(even) {background-color: #f1faff;}
+        tr:hover {background-color: #e3f6ff;}
+        td {height: 40px; text-align:center;}
+        th {height:50px; color: white;background-color: rgb(79, 163, 241);}
+        
+        
     </style>
 {% endblock %}
 
@@ -33,41 +41,43 @@
                 <a href="{% url 'student_SearchCourse' 0  %}">New Search</a> | <a href="{% url 'SearchCourse_modify' search %}"> Modify Search</a>
                 <br/>
                 <br/>
-                <table width= 90% border = '1'>
-                    <tr>
-                        <th>Term</th>
-                        <th>Course ID</th>
-                        <th>Class Name</th>
-                        <th>Section#</th>
-                        <th>Instructor</th>
-                        <th>Days</th>
-                        <th>Time</th>
-                        <th>Status</th>
-                        <th>Operation</th>
-                    </tr>
+                <div id = "tableborder">
+                    <table >
+                        <tr>
+                            <th>Term</th>
+                            <th>Course ID</th>
+                            <th>Class Name</th>
+                            <th>Section#</th>
+                            <th>Instructor</th>
+                            <th>Days</th>
+                            <th>Time</th>
+                            <th>Status</th>
+                            <th id = "last">Operation</th>
+                        </tr>
 
-                    {% for r in course %}
-                    <tr>
-                        <td>{{r.year}} {{r.semester}}</td>
-                        <td>{{r.cid}}</td>
-                        <td>{{r.className}}</td>
-                        <td>{{r.section}}</td>
-                        <td>{{r.insName}}</td>
-                        <td>{{r.day}}</td>
-                        <td>{{r.time}}</td>
-                        <td>{{r.status}}</td>
-                        {% if r.period == 2 or r.period == 3 %}
-                            {% if r.Added == 0 and r.status != 'Close' %}
-                            <td><a href = "{% url 'SearchCourse_courses_info' r.section search %}">Add</a></td>
+                        {% for r in course %}
+                        <tr>
+                            <td>{{r.year}} {{r.semester}}</td>
+                            <td>{{r.cid}}</td>
+                            <td>{{r.className}}</td>
+                            <td>{{r.section}}</td>
+                            <td>{{r.insName}}</td>
+                            <td>{{r.day}}</td>
+                            <td>{{r.time}}</td>
+                            <td>{{r.status}}</td>
+                            {% if r.period == 2 or r.period == 3 %}
+                                {% if r.Added == 0 and r.status != 'Close' %}
+                                <td id = "add"><a href = "{% url 'SearchCourse_courses_info' r.section search %}">Add</a></td>
+                                {% else %}
+                                <td></td>
+                                {% endif %}
                             {% else %}
                             <td></td>
                             {% endif %}
-                        {% else %}
-                        <td></td>
-                        {% endif %}
-                    </tr>
-                    {% endfor %}
-                </table>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
                 <br/>
                 <a href="{% url 'student_SearchCourse' 0  %}">New Search</a> | <a href="{% url 'SearchCourse_modify' search %}"> Modify Search</a>
             </center>
