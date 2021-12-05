@@ -176,6 +176,7 @@ class insMsg(models.Model):
     receiverID = models.IntegerField(default=0)
     title = models.CharField(max_length=20)
     content = models.CharField(max_length=256)
+    status = models.IntegerField(default = 0)
     getTime = models.DateTimeField(default=datetime.now)
     
     class Meta:

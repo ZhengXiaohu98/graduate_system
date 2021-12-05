@@ -96,6 +96,8 @@ def drop(request,section):
     uinfo = student.objects.get(sid = id)
 
     scheduleObj = schedules.objects.get(sectionNum = section)
+    scheduleObj.current_enroll -= 1
+    scheduleObj.save()
 
     #get current period
     Cperiod = period.objects.get(curStatus = 2)
@@ -104,7 +106,7 @@ def drop(request,section):
     if (Cperiod. curPeriod == 4):
         Gcourse = stuCourse.objects.get(sid = id, sectionNum = section, curStatus = 2)
         Gcourse.grade = 'W'
-        G.curStatus = 0
+        Gcourse.curStatus = 0
         Gcourse.save()
 
         # check if student dropped all courses, => suspended student

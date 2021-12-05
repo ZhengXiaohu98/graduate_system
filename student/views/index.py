@@ -36,9 +36,14 @@ def index(request, pIndex):
 
         notify = p.page(pIndex)
 
+    # get the current term
+    currentTerm = period.objects.get(curStatus = 2)
+    x = currentTerm.term.split()
+    Cyear= x[0]
+    Csemester= x[1]
     
     # get the current taking courses
-    courseObj = stuCourse.objects.filter(sid = id ,curStatus = 2)
+    courseObj = stuCourse.objects.filter(sid = id ,curStatus = 2, year = Cyear, semester = Csemester)
 
     # check if currents status of student is suspended
     if uinfo.curStatus == 0:

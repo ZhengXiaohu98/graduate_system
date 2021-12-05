@@ -57,11 +57,13 @@ def gradeUpdate(request,sectionNum=0):
         stuCourseObj.grade = grade # change grade of the object
         # change student to pass 
         if grade == 'F':
-            pastObj = stuCourse.objects.get(cid=stuCourseObj.cid,sid=stuCourseObj.sid,grade='F')
-            if pastObj:
-                stuCourseObj.curStatus = 666
-            else:
-                stuCourseObj.curStatus = 0 #fail
+            stuCourseObj.curStatus = 0
+
+            pastObj = stuCourse.objects.filter(cid=stuCourseObj.cid, sid = id, grade='F')
+            if pastObj.count() >= 1 :
+                stuObj = student.objects.get(sid = id)
+                stuObj.curStatus  = 0
+                stuObj.save()
             
         else:
             stuCourseObj.curStatus = 1  #pass
