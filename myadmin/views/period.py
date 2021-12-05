@@ -13,7 +13,13 @@ def viewPeriod(request):
     return render(request, "myadmin/period/viewperiod.html", context)
 
 def nextPeriod(request):
-    sList = schedules.objects.all()
+    # get the current term
+    currentTerm = period.objects.get(curStatus = 2)
+    x = currentTerm.term.split()
+    Cyear= x[0]
+    Csemester= x[1]
+
+    sList = schedules.objects.filter(year = Cyear, semester = Csemester)
     rList = review.objects.all()
     cur = period.objects.get(curStatus=2)
     uc = period.objects.get(curStatus=1)

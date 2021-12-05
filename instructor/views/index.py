@@ -7,9 +7,16 @@ from myadmin.models import instructor, insApplication,schedules,period,justifica
 def index(request):
     name = request.session['instructoruser']['insName']
     id = request.session['instructoruser']['iid']
-    courses = schedules.objects.all().filter(iid = id, status="open").order_by("-current_enroll")
+
+    # get the current term
+    currentTerm = period.objects.get(curStatus = 2)
+    x = currentTerm.term.split()
+    Cyear= x[0]
+    Csemester= x[1]
+
+    courses = schedules.objects.all().filter(iid = id, year = Cyear, semester = Csemester).order_by("-current_enroll")
     #current number of courses teaching
-    numCourses = schedules.objects.all().filter(iid = id, status="open").count()
+    numCourses = courses.count()
     #data is a list of course object currently teaching
     data = []
     for course in courses:

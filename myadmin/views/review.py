@@ -33,6 +33,7 @@ def dealReview(request, rrid):
         if checkStr.find(tw) != -1:
             checkStr = checkStr.replace(tw, "***")
             twCnt = twCnt + 1
+            print(twCnt)
     curReview.content = checkStr
     
     curStu = student.objects.get(sid = curReview.sid)
