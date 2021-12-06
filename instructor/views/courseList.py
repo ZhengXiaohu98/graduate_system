@@ -51,37 +51,14 @@ def gradeUpdate(request,sectionNum=0):
     grade = request.POST.get('grade')
     name = request.session['instructoruser']['insName']
     stuCourseObj = stuCourse.objects.get(sectionNum = sectionNum, sid = id) #get obj in stuCourse
-    if stuCourseObj.grade is None:
-        stuCourseObj.curStatus = 2
-    if stuCourseObj.curStatus == 2:
-        stuCourseObj.grade = grade # change grade of the object
-        # change student to pass 
-        if grade == 'F':
-            stuCourseObj.curStatus = 0
 
-            pastObj = stuCourse.objects.filter(cid=stuCourseObj.cid, sid = id, grade='F')
-            if pastObj.count() >= 1 :
-                stuObj = student.objects.get(sid = id)
-                stuObj.curStatus  = 0
-                stuObj.save()
-            
-        else:
-            stuCourseObj.curStatus = 1  #pass
-        stuCourseObj.save() #save change for student grade
-        
-        #updating the gpa of the student
-        stuObj = student.objects.get(sid = id) #get obj in stuCourse
-        print(f"GPA BEFORE:{stuObj.GPA}")
-        grade2GPA = {'A':4.0, 'B':3.0, 'C':2.0, 'D':1.0, 'F':0} #dict of grade to GPA
+    # change grade of the object
+    stuCourseObj.grade = grade 
+    stuCourseObj.save()
 
-        stuObj.GPA = (stuObj.class_taken * stuObj.GPA + grade2GPA[grade])/(stuObj.class_taken + 1) #update GPA
-        print(f"GPA AFTER:{stuObj.GPA}")
-        stuObj.save() #save change for student GPA
-        context = {"name":name,"sectionNum":sectionNum,"info":"Update Successfully"}
-        return render(request, "instructor/courseList/gradeInfo.html", context)
-    else:
-        context = {"name":name,"sectionNum":sectionNum,"info":"You can not grade same student more than once"}
-        return render(request, "instructor/courseList/gradeInfo.html", context)
+    context = {"name":name,"sectionNum":sectionNum,"info":"Update Successfully"}
+    return render(request, "instructor/courseList/gradeInfo.html", context)
+
 
 
 def viewWaitlist(request,sectionNum=0):

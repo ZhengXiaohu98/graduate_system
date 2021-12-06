@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.core.paginator import Paginator
 from django.db.models import Q
 
-from myadmin.models import gradApplication, student, stuMsg
+from myadmin.models import gradApplication, student, stuMsg, payFine
 
 #view graduate table page
 def viewGraduate(request, pIndex=1):
@@ -52,6 +52,11 @@ def dealGraduateR(request, ggid):
     if(stuObj.cp_num >=3):
         stuObj.cp_num -= 3
         stuObj.curStatus = 0
+
+        # add fine to student account
+        Ufine = payFine()
+        Ufine.sid = curGrd.sid
+        Ufine.save()
 
     stuObj.save()
 
