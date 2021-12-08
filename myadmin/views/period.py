@@ -27,7 +27,7 @@ def nextPeriod(request):
         return render(request, "myadmin/info.html", {"info" : "It is the last period of the term. You can only end the term!"})
     cur.curPeriod += 1
     stuList = student.objects.all()
-    if cur.curPeriod ==3:
+    if cur.curPeriod == 3:
         for s in sList:
             if s.current_enroll < 5:
                 s.status = "Cancel"
@@ -62,15 +62,17 @@ def nextPeriod(request):
                     stu = stuList.get(sid = sc.sid)
                     stu.class_taking -= 1
                     stu.save()
+
         # check student who has less than 2 courses
         stuObj = stuList.filter(curStatus = 1)
         for s in stuObj:
-            if s.class_taking == 1:
+            scObj = stuCourse.objects.filter(sid = s.sid, year = Cyear, semester =Csemester)
+            if scObj.count() == 1:
                 curStuMsg = stuMsg()
                 curStuMsg.receiverID = s.sid
                 curStuMsg.sender = "Registar"
                 curStuMsg.title = "Need to Enroll More Classes"
-                curStuMsg.content = "You must enroll minimal 2 classes. Enroll more class please"
+                curStuMsg.content = "You must enroll at least 2 classes. Enroll more class please"
                 curStuMsg.save()    
 
     if cur.curPeriod == 4:
