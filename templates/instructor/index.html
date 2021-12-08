@@ -86,7 +86,7 @@
                 <td>{{ c.wait_list }}</td>
                 <td>{{ c.status }}</td>
                 <td>{{ c.rating }}</td>
-                <td><a href="{% url 'stuInCourse' c.sectionNum %}">View Students</a></td>
+                <td><a href="{% url 'stuInCourse' c.sectionNum %}" class="myButton">View Students</a></td>
             </tr>
         {% endfor %}
         </table>

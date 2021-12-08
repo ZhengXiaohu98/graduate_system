@@ -173,7 +173,7 @@ def endPeriod(request):
                 curSum = curSum + 2.0
             else:
                 curSum = curSum + 1.0
-            curStu.GPA = curSum / curStu.class_taken
+            curStu.GPA = curSum / (curStu.class_taken + 1)
         else:
             sc.curStatus = 0
             curCourse = course.objects.get(className = sc.className)
