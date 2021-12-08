@@ -1,5 +1,5 @@
 from django.urls import path
-from myadmin.views import index, student, instructor, application, course, period, complain, graduate, justification, review
+from myadmin.views import index, student, instructor, application, course, period, complain, graduate, justification, review, studentfine
 
 urlpatterns = [
     #myadmin index page
@@ -63,5 +63,8 @@ urlpatterns = [
     
     #review url page
     path('review/reviewview/<int:pIndex>', review.viewReview, name = 'review_view'),
-    path('review/reviewdeal/<int:rrid>', review.dealReview, name = 'review_deal')
+    path('review/reviewdeal/<int:rrid>', review.dealReview, name = 'review_deal'),
+    
+    #student fine url page
+    path('fines/reviewfine/<int:pIndex>', studentfine.viewFines, name = 'studentfine_view')
 ]

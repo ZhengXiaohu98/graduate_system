@@ -5,10 +5,10 @@ tr td{
 
 .viewtable_id{width: 100px;}
 .viewtable_sid{width: 100px;}
-.viewtable_amount{width: 120px;}
-.viewtable_paid{width: 120px;}
-.viewtable_time{width: 200px;}
-.viewtable_status{width: 100px;}
+.viewtable_classtaking{width: 120px;}
+.viewtable_classtaken{width: 120px;}
+.viewtable_status{width: 120px;}
+.viewtable_action{width: 120px;}
 
 .paginator ul li{
     list-style-type: none; 
