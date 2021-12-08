@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.core.paginator import Paginator
 from django.db.models import Q
 
-from myadmin.models import review, student, stuMsg
+from myadmin.models import review, student, stuMsg, payFine
 
 #view graduate table page
 def viewReview(request, pIndex=1):
@@ -58,6 +58,11 @@ def dealReview(request, rrid):
     if curStu.cp_num >= 3:
         curStu.cp_num = curStu.cp_num - 3
         curStu.curStatus = 0
+
+        # add fine to student account
+        Ufine = payFine()
+        Ufine.sid = curStu.sid
+        Ufine.save()
         
     curStu.save()
     curReview.save()

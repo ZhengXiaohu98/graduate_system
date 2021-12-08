@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
-from myadmin.models import student, stuApplication, stuCourse, instructor, schedules, complainmsg
+from myadmin.models import student, stuApplication, stuCourse, instructor, schedules, complainmsg, period
 from django.http import HttpResponse
 from django.core.paginator import Paginator
 
@@ -11,9 +11,15 @@ def stuComplain(request):
 def stuComplainStu(request, info, name, description, pIndex = 1):
     id = request.session['studentuser']['sid']
     uinfo = student.objects.get(sid = id)
+
+    # get the current term
+    currentTerm = period.objects.get(curStatus = 2)
+    x = currentTerm.term.split()
+    Cyear= x[0]
+    Csemester= x[1]
     
     #get the current taking courses
-    course = stuCourse.objects.filter(sid = id, curStatus = 2)
+    course = stuCourse.objects.filter(sid = id, curStatus = 2, year = Cyear, semester = Csemester)
     data = []
     names = []
 
@@ -76,8 +82,15 @@ def stuComplainStu(request, info, name, description, pIndex = 1):
 def stuComplainIns(request, info, name, description, pIndex = 1):
     id = request.session['studentuser']['sid']
     uinfo = student.objects.get(sid = id)
+
+    # get the current term
+    currentTerm = period.objects.get(curStatus = 2)
+    x = currentTerm.term.split()
+    Cyear= x[0]
+    Csemester= x[1]
+
     
-    course = stuCourse.objects.filter(sid = id, curStatus = 2)
+    course = stuCourse.objects.filter(sid = id, curStatus = 2, year = Cyear, semester = Csemester)
     data = []
     for i in course:
         schedulesObj = schedules.objects.get(sectionNum = i.sectionNum)

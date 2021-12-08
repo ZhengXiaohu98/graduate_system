@@ -42,18 +42,29 @@ def index(request, pIndex):
     Cyear= x[0]
     Csemester= x[1]
     
+    # get the completed course 
+    Taken = stuCourse.objects.filter(sid = id)
+    complete = 0
+    for c in Taken:
+        if c.grade is None:
+            pass
+        elif c.grade == 'F':
+            pass  
+        else:
+            complete +=1
+
     # get the current taking courses
     courseObj = stuCourse.objects.filter(sid = id ,curStatus = 2, year = Cyear, semester = Csemester)
 
     # check if currents status of student is suspended
     if uinfo.curStatus == 0:
         info = "! ! Your current status is suspended ! !"
-        context = {"userinfo":uinfo, "info":info , "taking":0, "Cperiod":currentTerm.curPeriod,"notification":notify}
+        context = {"userinfo":uinfo, "info":info , "taking":0, "Cperiod":currentTerm.curPeriod,"completed": complete,"notification":notify}
 
     # check if student currently not taking course
     elif(courseObj.count() == 0 ):
         info = "! ! There is no current taking courses ! !"
-        context = {"userinfo":uinfo, "info":info , "taking":0,"Cperiod":currentTerm.curPeriod, "notification":notify}
+        context = {"userinfo":uinfo, "info":info , "taking":0,"Cperiod":currentTerm.curPeriod,"completed": complete, "notification":notify}
 
     
     else:
@@ -72,8 +83,8 @@ def index(request, pIndex):
             data.append(rlist)
 
 
-        context = {"userinfo":uinfo, "info":info, "term": currentTerm.term, "course":data, "Cperiod":currentTerm.curPeriod, "taking":1, 
-        "notification":notify}
+        context = {"userinfo":uinfo, "info":info, "term": currentTerm.term, "course":data, "Cperiod":currentTerm.curPeriod,
+         "taking":1 , "completed": complete,  "notification":notify}
     
     if(notify != 0):
         context["pIndex"] = pIndex

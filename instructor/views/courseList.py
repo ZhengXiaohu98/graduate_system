@@ -56,8 +56,10 @@ def gradeUpdate(request,sectionNum=0):
     stuCourseObj.grade = grade 
     stuCourseObj.save()
 
+
     context = {"name":name,"sectionNum":sectionNum,"info":"Update Successfully"}
     return render(request, "instructor/courseList/gradeInfo.html", context)
+
 
 
 def viewWaitlist(request,sectionNum=0):

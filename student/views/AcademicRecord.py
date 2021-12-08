@@ -25,6 +25,8 @@ def stuHistory(request):
             status = "In progress"
         elif record.curStatus == 1:
             status = "Passed"
+        elif record.curStatus == 3:
+            status = "Grade is not assigned"
         else:
             status = "Failed"
 
@@ -39,10 +41,10 @@ def stuHistory(request):
 def stugraduate(request):
     id = request.session['studentuser']['sid']
     uinfo = student.objects.get(sid = id)
-    currentTaking = stuCourse.objects.all().filter(sid = id, curStatus = 2).count()
+    currentTaking = uinfo.class_taking
     passed = stuCourse.objects.all().filter(sid = id, curStatus = 1).count()
     failed = stuCourse.objects.all().filter(sid = id, curStatus = 0).count()
-    taken = currentTaking + passed + failed
+    taken = uinfo.class_taken
     context = {"userinfo":uinfo, "taken":taken, "current":currentTaking, "passed":passed}
 
     return render(request, 'student/AcademicRecord/stugraduate.html',context)
