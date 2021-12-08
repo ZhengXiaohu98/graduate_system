@@ -4,12 +4,29 @@
 <title>Profile Info</title>
 {% endblock %}
 
+{% block style %}
+<style>
+    .info{
+        background-color: rgb(133, 107, 173);
+        border-radius: 20px;
+        width: 20%;
+    }
+    .msg{
+        text-decoration: cadetblue;
+        text-shadow: cadetblue;
+        font-size: large;
+    }
+</style>
+{% endblock %}
+
 {% block name %}
 {{name}}
 {% endblock %}
 
 {% block main_body %}
-<h2>Information message</h2>
+<div class = "info">
+<h1>Information message</h1>
 
-<span>{{info}}</span>
+<span class="msg">{{info}}</span>
+</div>
 {% endblock %}

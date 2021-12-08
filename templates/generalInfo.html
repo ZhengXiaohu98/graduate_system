@@ -2,17 +2,18 @@
 
 
 {% block main_content %}
-<h1>Welcome to GradZero</h1>
-<br/><br/><br/>
 
+<div>
+ <center>   
+     <br/><br/><br/>
 <h2>TOP 5 Students</h2>
 <hr align=center width=300 color=#987cb9 SIZE=2>
 <br/>
-<table width= "800" border="1">
+<table width= "800" border="1" >
     <tr>
-        <td>sid</td>
-        <td>name</td>
-        <td>GPA</td>
+        <th>Student ID</th>
+        <th>Student Name</th>
+        <th>GPA</th>
     
     </tr>
     {% for s in topStudent %}
@@ -23,19 +24,21 @@
         </tr>
     {% endfor %}
 </table>
+
 <br/><br/><br/>
 
 <h2>TOP 5 Class Sections</h2>
 <hr align=center width=300 color=#987cb9 SIZE=2>
 <br/>
-<table width= "800" border="1">
+<span style="font: 100;">1 the lowest 5 the highest</span>
+<table width= "800" border="1" >
     <tr>
-        <td>Section</td>
-        <td>Class Name</td>
-        <td>Year</td>
-        <td>Semester</td>
-        <td>Instructor ID</td>
-        <td>Rating</td>
+        <th>Section</th>
+        <th>Class Name</th>
+        <th>Year</th>
+        <th>Semester</th>
+        <th>Instructor Name</th>
+        <th>Rating</th>
     </tr>
     {% for s in goodRating %}
         <tr>
@@ -43,7 +46,7 @@
             <td>{{ s.className }}</td>
             <td>{{ s.year }}</td>
             <td>{{ s.semester }}</td>
-            <td>{{ s.iid }}</td>
+            <td>{{ s.insName }}</td>
             <td>{{ s.rating }}</td>
         </tr>
     {% endfor %}
@@ -53,14 +56,15 @@
 <h2>BOTTOM 5 Class Sections</h2>
 <hr align=center width=300 color=#987cb9 SIZE=2>
 <br/>
-<table width= "800" border="1">
+<span style="font: 100;">1 the lowest 5 the highest</span>
+<table width= "800" border="1" >
     <tr>
-        <td>Section</td>
-        <td>Class Name</td>
-        <td>Year</td>
-        <td>Semester</td>
-        <td>Instructor ID</td>
-        <td>Rating</td>
+        <th>Section</th>
+        <th>Class Name</th>
+        <th>Year</th>
+        <th>Semester</th>
+        <th>Instructor Name</th>
+        <th>Rating</th>
     </tr>
     {% for s in badRating %}
         <tr>
@@ -68,10 +72,13 @@
             <td>{{ s.className }}</td>
             <td>{{ s.year }}</td>
             <td>{{ s.semester }}</td>
-            <td>{{ s.iid }}</td>
+            <td>{{ s.insName }}</td>
             <td>{{ s.rating }}</td>
         </tr>
     {% endfor %}
 </table>
+<br/><br/><br/>
+</center>
+</div>
 
 {% endblock %}
