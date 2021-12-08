@@ -56,6 +56,7 @@ def gradeUpdate(request,sectionNum=0):
     stuCourseObj.grade = grade 
     stuCourseObj.save()
 
+
     context = {"name":name,"sectionNum":sectionNum,"info":"Update Successfully"}
     return render(request, "instructor/courseList/gradeInfo.html", context)
 
@@ -86,6 +87,9 @@ def waitlistUpdate(request,sid=0):
     try:    
         #need things like course name to stuCourse obj
         scheduleObj = schedules.objects.get(sectionNum=sectionNum)
+        scheduleObj.wait_list -= 1
+        scheduleObj.current_enroll += 1
+        scheduleObj.save()
         className = scheduleObj.className
         
         courseObj = course.objects.get(className = className)
