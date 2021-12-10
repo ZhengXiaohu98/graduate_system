@@ -93,59 +93,40 @@ The purpose of this SRS is to provide an outline of a software product. Includin
     - [x] Willissue a warning to the student or the instructor based on the investigation. 
     - [x] Either punish the student accordingly or punish the instructor by one warning.
     - [x] Any students receiving up to 3 warnings will be suspended for 1 semester and must pay a fine to the registrars.
-​
-​
 
 
 ## Use-Case
 ### Student:
-● Login
-Students provide their username and password to login the account.
-● Apply for graduation:Student
-Student completed 8 courses can apply for guaduation
-● View course
-Student can view enrolled courses
-● Add/drop course
-Student can add or drop courses
-● Complain
-Student can complain instructors or other students in the same section
-● See notification
-Student can see notification from the register and instructor
-● Rate a course
-Student can rate a course currently taking
+- Login: Students provide their username and password to login the account.
+- Apply for graduation: Student completed 8 courses can apply for guaduation
+- View course: Student can view enrolled courses
+- Add/drop course: Student can add or drop courses
+- Complain: Student can complain instructors or other students in the same section
+- See notification :Student can see notification from the register and instructor
+- Rate a course: Student can rate a course currently taking
 
 ### Instructor:
-● Login
-Instructor provide their username and password to login the account.
-● Give assignments to students
-Instructor can send students notification to students to assign work
-● Grade assignments
-Instructor can give grades to student for classes teaching
-● Send notification to students
-Instructor can send notificaiton to students
-● View student information that of his/her class
-Instructor can see what students are in the class
+- Login: Instructor provide their username and password to login the account.
+- Give assignments to students: Instructor can send students notification to students to assign work
+- Grade assignments: Instructor can give grades to student for classes teaching
+- Send notification to students: Instructor can send notificaiton to students
+- View student information that of his/her class: Instructor can see what students are in the class
 
 ### Visitor:
-● View student information table
+- View student information table
 Vistor can see the top students and top classes in the system 
-● Apply to be a student
+- Apply to be a student
 Vistor can apply to be a student by submitting an application
-● Apply to be an instructor
+- Apply to be an instructor
 Vistor can apply to be an instructor by submitting an application
+
 ### Registrar:
-● Accept or reject student or instructor application
-Registrar can view and take action to account sign-up application
-● Review and handle complains
-Registrar can view and take action to complains received
-● Add/edit users account information
-Registrar can add and edit user account information
-● Add new course
-Registrar can add and edit new course
-● Suspend or unsuspend student or instructor
-Registrar can suspend and unsuspend students and instructors
-● Send notification to students or instructors
-Registar can sent notification to students and instructors
+- Accept or reject student or instructor application: Registrar can view and take action to account sign-up application
+- Review and handle complains: Registrar can view and take action to complains received
+- Add/edit users account information: Registrar can add and edit user account information
+- Add new course: Registrar can add and edit new course
+- Suspend or unsuspend student or instructon: Registrar can suspend and unsuspend students and instructors
+- Send notification to students or instructors: Registar can sent notification to students and instructors
 
 
 
