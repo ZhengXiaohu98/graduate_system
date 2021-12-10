@@ -4,11 +4,15 @@ A graduate system would allows students and instructors to manage their courses.
 ## Table of Contents
 1. [Overview](#Overview)
 1. [Product Spec](#Product-Spec)
-1. [Wireframes](#Wireframes)
+2. [Use Case](#Use-Case)
+3. [Wireframes](#Wireframes)
 
 ## Overview
 ### Description
 GradSchoolZero is a graduate program management system. It is used to handle all the details about students, instructors, and courses. The details included: Student personal/academic information, Instructor/personal/academic information, Course details, and Academic details.
+
+### Framework Used
+Django
 
 ### Purpose
 The purpose of this SRS is to provide an outline of a software product. Including design decisions, architectural design, and information needed for software support.
